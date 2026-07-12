@@ -1,5 +1,6 @@
 # Large files not needed for the web viewer
 *.pdf
+!docs/Bei_Xujiaqiao_User_Guide.pdf
 *.tif
 *.tiff
 *.gpkg
