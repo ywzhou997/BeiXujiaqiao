@@ -173,7 +173,7 @@ Colors are assigned by **feature type**, not by period. All feature names that m
 |---|---|
 | F-MAP-1 | Use **Leaflet.js** (loaded from CDN) as the mapping library. |
 | F-MAP-2 | Transform EPSG:3857 coordinates to EPSG:4326 (lat/lng) for Leaflet display using `proj4js` (CDN). |
-| F-MAP-3 | On load, set the map view to a **fixed default bounding box** in EPSG:3857: upper-left `(12724749.86, 4315428.93)`, lower-right `(12725091.27, 4315219.93)`. **Fit All** still zooms to all currently selected (visible) layers. |
+| F-MAP-3 | On load, set the map view to a **fixed default bounding box** in WGS84: `(36.1075510, 114.3083653)` and `(36.1060077, 114.3114498)`. **Fit All** still zooms to all currently selected (visible) layers. |
 | F-MAP-4 | Provide a tile basemap (OpenStreetMap) with an option to toggle to a blank/white background for print-friendly views. |
 | F-MAP-5 | The map state (zoom, pan, visible layers) is **shared** between the two tabs. Switching tabs does not reset the map or remove visible layers. |
 | F-MAP-6 | Scroll-wheel and toolbar zoom use **fractional zoom levels** (`zoomSnap: 0`, `zoomDelta: 0.25`). |
@@ -324,9 +324,9 @@ Sketches persist in the browser session only (no server save in V1). Drawing mod
 | ID | Requirement |
 |---|---|
 | F-TOOL-L-7 | **Draw Screenshot Area** — user draws a rectangle on the map defining the export region. The rectangle has a **transparent fill** (outline only). |
-| F-TOOL-L-8 | **Place Scale Bar** — place a draggable, **resizable** scale bar anchored to the **screenshot area** (position stored as a fraction of the screenshot rectangle). The bar maintains its relative position when the map is zoomed or panned. Transparent background; tick marks at **0 m and 10 m**. |
+| F-TOOL-L-8 | **Place Scale Bar** — place a draggable, **resizable** scale bar anchored to the **screenshot area** (position stored as a fraction of the screenshot rectangle). The bar maintains its relative position when the map is zoomed or panned. Transparent background. The user adjusts bar width with the corner handle; **ground distance labels snap to whole meters** and are computed from the current map scale (meters per pixel at map center), updating on zoom, pan, or resize. |
 | F-TOOL-L-9 | **Legend** — open a panel to select export legend items (deselected by default). The **export legend** is minimalist, distinct from the map legend, draggable and resizable, anchored to the **screenshot area** like the scale bar, with a transparent background. |
-| F-TOOL-L-10 | **Download** — save an image of the screenshot area including visible map content, the export scale bar, and the export legend (when placed inside the screenshot region). Resize handles are **not** included in the exported image. |
+| F-TOOL-L-10 | **Download** — temporarily zoom the map to the **maximum extent** of the drawn screenshot area, capture at high resolution, then restore the previous view. The dashed screenshot boundary is **not** included in the exported image. Resize handles are **not** included. Output is at least **1000 × 1000 px**. |
 
 ## 5. Non-Functional Requirements
 
@@ -406,14 +406,14 @@ GeoJSON files use EPSG:3857 (meters). Leaflet expects EPSG:4326 (degrees). On lo
 
 ### 6.4.1 Default Map View
 
-On page load (after layers are loaded), the map view is set to this fixed extent in EPSG:3857:
+On page load (after layers are loaded), the map view is set to this fixed extent in WGS84 (lat, lng):
 
-| Corner | X (easting) | Y (northing) |
+| Corner | Latitude | Longitude |
 |---|---|---|
-| Upper left | 12724749.86 | 4315428.93 |
-| Lower right | 12725091.27 | 4315219.93 |
+| North-west | 36.1075510 | 114.3083653 |
+| South-east | 36.1060077 | 114.3114498 |
 
-Corners are reprojected to WGS84 for Leaflet `fitBounds`. The **Fit All** control still zooms to the union of all selected layer extents.
+The **Fit All** control still zooms to the union of all selected layer extents.
 
 ### 6.5 Tab 1 Grouping Logic
 

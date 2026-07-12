@@ -108,7 +108,7 @@ button:hover { background: #f0ebe3; }
   position: absolute; z-index: 1000; cursor: move; user-select: none;
   background: transparent; border: none; border-radius: 0;
   padding: 6px 8px 4px; box-shadow: none;
-  display: none; transform-origin: bottom left;
+  display: none;
 }
 #scale-bar-wrap.visible { display: block; }
 #export-legend-wrap {
@@ -508,23 +508,20 @@ let loadedBounds = null;
 let abandonmentMode = false;
 let drawnItems, exportItems, activeDrawHandler = null, editToolbar = null;
 let screenshotLayer = null, scaleBarVisible = false, drawingScreenshotArea = false;
-let scaleBarUserScale = 1, exportLegendUserScale = 1;
+let scaleBarWidthPx = 100, exportLegendUserScale = 1;
 let scaleBarRelPos = null;
 let exportLegendRelPos = null;
 const legendIncluded = new Set();
 const exportLegendIncluded = new Set();
+const EXPORT_MIN_WIDTH_PX = 1000;
+const EXPORT_MIN_HEIGHT_PX = 1000;
+const EXPORT_SCALE = 4;
 
-const DEFAULT_VIEW_3857 = {
-  upperLeft: [12724749.86, 4315428.93],
-  lowerRight: [12725091.27, 4315219.93]
-};
+const DEFAULT_VIEW_SW = [36.1060077, 114.3083653];
+const DEFAULT_VIEW_NE = [36.1075510, 114.3114498];
 
 function defaultViewBounds() {
-  const [west, north] = DEFAULT_VIEW_3857.upperLeft;
-  const [east, south] = DEFAULT_VIEW_3857.lowerRight;
-  const sw = proj4("EPSG:3857", "EPSG:4326", [west, south]);
-  const ne = proj4("EPSG:3857", "EPSG:4326", [east, north]);
-  return L.latLngBounds([sw[1], sw[0]], [ne[1], ne[0]]);
+  return L.latLngBounds(DEFAULT_VIEW_SW, DEFAULT_VIEW_NE);
 }
 
 const mapEl = document.getElementById("map");
@@ -981,37 +978,38 @@ function initScreenshotRelativeDefaults() {
   if (!exportLegendRelPos) exportLegendRelPos = { x: 0.06, y: 0.06 };
 }
 
-function applyScaleBarDisplayScale() {
-  const wrap = document.getElementById("scale-bar-wrap");
-  wrap.style.transform = "scale(" + scaleBarUserScale + ")";
-}
-
-function applyExportLegendDisplayScale() {
-  const wrap = document.getElementById("export-legend-wrap");
-  wrap.style.transform = "scale(" + exportLegendUserScale + ")";
+function snapScaleMeters(meters) {
+  return Math.max(1, Math.round(meters));
 }
 
 function updateScaleBar() {
-  const wrap = document.getElementById("scale-bar-wrap");
   const track = document.getElementById("scale-bar-track");
   if (!scaleBarVisible || !map) return;
   const mpp = metersPerPixel(map.getCenter().lat, map.getZoom());
-  const totalM = 10;
-  const widthPx = Math.max(30, Math.round(totalM / mpp));
+  const totalM = snapScaleMeters(scaleBarWidthPx * mpp);
+  const widthPx = totalM / mpp;
   track.style.width = widthPx + "px";
   track.innerHTML = "";
-  for (const m of [0, 10]) {
+
+  const ticks = [{ m: 0, label: "0 m" }];
+  if (totalM >= 6 && totalM % 2 === 0) {
+    const half = totalM / 2;
+    ticks.push({ m: half, label: half + " m" });
+  }
+  ticks.push({ m: totalM, label: totalM + " m" });
+
+  for (const { m, label } of ticks) {
+    const pct = totalM > 0 ? (m / totalM) * 100 : 0;
     const tick = document.createElement("div");
     tick.className = "scale-tick";
-    tick.style.left = (m / totalM * 100) + "%";
+    tick.style.left = pct + "%";
     const lbl = document.createElement("div");
     lbl.className = "scale-tick-label";
-    lbl.style.left = (m / totalM * 100) + "%";
-    lbl.textContent = m + " m";
+    lbl.style.left = pct + "%";
+    lbl.textContent = label;
     track.appendChild(tick);
     track.appendChild(lbl);
   }
-  applyScaleBarDisplayScale();
 }
 
 function disableActiveDraw() {
@@ -1188,6 +1186,32 @@ function makeDraggable(el, handleEl) {
   });
 }
 
+function applyExportLegendDisplayScale() {
+  const wrap = document.getElementById("export-legend-wrap");
+  wrap.style.transform = "scale(" + exportLegendUserScale + ")";
+}
+
+function makeScaleBarResizable(wrapEl, getWidth, setWidth, onResize) {
+  const handle = wrapEl.querySelector(".overlay-resize-handle");
+  if (!handle) return;
+  handle.addEventListener("mousedown", e => {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startWidth = getWidth();
+    const onMove = ev => {
+      setWidth(Math.max(40, Math.min(500, startWidth + (ev.clientX - startX))));
+      onResize();
+    };
+    const onUp = () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  });
+}
+
 function makeResizable(el, getScale, setScale, applyScale) {
   const handle = el.querySelector(".overlay-resize-handle");
   if (!handle) return;
@@ -1211,6 +1235,29 @@ function makeResizable(el, getScale, setScale, applyScale) {
   });
 }
 
+function screenshotCaptureRect(bounds) {
+  const nw = map.latLngToContainerPoint(bounds.getNorthWest());
+  const se = map.latLngToContainerPoint(bounds.getSouthEast());
+  const left = Math.min(nw.x, se.x);
+  const top = Math.min(nw.y, se.y);
+  const width = Math.abs(se.x - nw.x);
+  const height = Math.abs(se.y - nw.y);
+  const tl = mapPointToMapWrap(left, top);
+  return { x: tl.x, y: tl.y, w: width, h: height };
+}
+
+async function waitForMapSettled() {
+  await new Promise(resolve => {
+    map.once("moveend", () => setTimeout(resolve, 200));
+    setTimeout(resolve, 1500);
+  });
+  const tileLayers = [osmLayer, blankLayer].filter(layer => layer && map.hasLayer(layer));
+  await Promise.all(tileLayers.map(layer => new Promise(resolve => {
+    if (layer._loading) layer.once("load", () => setTimeout(resolve, 100));
+    else setTimeout(resolve, 100);
+  })));
+}
+
 async function downloadScreenshot() {
   if (!screenshotLayer) {
     setStatus("Draw a screenshot area first.");
@@ -1218,41 +1265,56 @@ async function downloadScreenshot() {
   }
   setStatus("Generating image…");
   const bounds = screenshotLayer.getBounds();
-  const nw = map.latLngToContainerPoint(bounds.getNorthWest());
-  const se = map.latLngToContainerPoint(bounds.getSouthEast());
-  const x = Math.min(nw.x, se.x);
-  const y = Math.min(nw.y, se.y);
-  const w = Math.abs(se.x - nw.x);
-  const h = Math.abs(se.y - nw.y);
+  const savedView = { center: map.getCenter(), zoom: map.getZoom() };
+
+  map.fitBounds(bounds, { animate: false, padding: [0, 0] });
+  updateScaleBar();
+  updateExportOverlaysPosition();
+  await waitForMapSettled();
+
+  let { x, y, w, h } = screenshotCaptureRect(bounds);
   if (w < 10 || h < 10) {
+    map.setView(savedView.center, savedView.zoom, { animate: false });
+    updateScaleBar();
+    updateExportOverlaysPosition();
     setStatus("Screenshot area too small.");
     return;
   }
+
+  const exportScale = Math.max(
+    EXPORT_SCALE,
+    EXPORT_MIN_WIDTH_PX / w,
+    EXPORT_MIN_HEIGHT_PX / h
+  );
   const mapWrap = document.getElementById("map-wrap");
   const mapLegend = document.getElementById("legend");
   const resizeHandles = [...document.querySelectorAll(".overlay-resize-handle")];
-  exportItems.eachLayer(layer => layer.setStyle({ opacity: 0, fillOpacity: 0, weight: 0 }));
+  exportItems.removeLayer(screenshotLayer);
   mapLegend.style.visibility = "hidden";
-  resizeHandles.forEach(h => { h.style.visibility = "hidden"; });
+  resizeHandles.forEach(handle => { handle.style.visibility = "hidden"; });
   try {
     const canvas = await html2canvas(mapWrap, {
       useCORS: true, allowTaint: true, backgroundColor: "#ffffff",
-      x, y, width: w, height: h, scale: 2
+      x, y, width: w, height: h, scale: exportScale, logging: false
     });
     const link = document.createElement("a");
     link.download = "beixujiaqiao-map.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
-    setStatus("Image downloaded.");
+    setStatus(`Image downloaded (${canvas.width} × ${canvas.height} px).`);
   } catch (e) {
     console.error(e);
     setStatus("Download failed: " + e.message);
   } finally {
-    mapLegend.style.visibility = "";
-    resizeHandles.forEach(h => { h.style.visibility = ""; });
-    exportItems.eachLayer(layer => layer.setStyle({
+    exportItems.addLayer(screenshotLayer);
+    screenshotLayer.setStyle({
       color: "#3388ff", weight: 2, fillOpacity: 0, fill: false, opacity: 1, dashArray: "6 4"
-    }));
+    });
+    mapLegend.style.visibility = "";
+    resizeHandles.forEach(handle => { handle.style.visibility = ""; });
+    map.setView(savedView.center, savedView.zoom, { animate: false });
+    updateScaleBar();
+    updateExportOverlaysPosition();
   }
 }
 
@@ -1345,7 +1407,7 @@ function initMap() {
     zoomSnap: 0,
     zoomDelta: 0.25,
     wheelPxPerZoomLevel: 60
-  }).setView([34.8, 114.3], 16);
+  }).setView(defaultViewBounds().getCenter(), 16);
   osmLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     minZoom: 0, maxZoom: 22, attribution: "&copy; OpenStreetMap"
   }).addTo(map);
@@ -1376,11 +1438,11 @@ async function init() {
     "top-left",
     rel => { exportLegendRelPos = rel; }
   );
-  makeResizable(
+  makeScaleBarResizable(
     document.getElementById("scale-bar-wrap"),
-    () => scaleBarUserScale,
-    v => { scaleBarUserScale = v; },
-    applyScaleBarDisplayScale
+    () => scaleBarWidthPx,
+    v => { scaleBarWidthPx = v; },
+    updateScaleBar
   );
   makeResizable(
     document.getElementById("export-legend-wrap"),
