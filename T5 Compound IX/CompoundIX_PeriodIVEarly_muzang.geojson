@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIX_PeriodIVEarly_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M84", "type": "M", "note": "underF35", "RelaFeat": null, "period": "IVEarly" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724876.202128855511546, 4315350.282991474494338 ], [ 12724876.099455250427127, 4315347.670518645085394 ], [ 12724874.633504340425134, 4315347.744671803899109 ], [ 12724874.696249321103096, 4315350.357144633308053 ], [ 12724876.202128855511546, 4315350.282991474494338 ] ] ] ] } }
+]
+}

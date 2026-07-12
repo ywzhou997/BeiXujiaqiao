@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIII_PeriodIVEarly_F18_dianjimu",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 2, "FeatName": "m5", "type": "m", "RelaFeat": "F18", "note": "dianjimu,subadult", "period": "IVEarly" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724913.157620860263705, 4315374.657532654702663 ], [ 12724914.048263208940625, 4315374.570515872910619 ], [ 12724914.027788670733571, 4315374.201974212191999 ], [ 12724913.889585549011827, 4315374.155906504020095 ], [ 12724913.132027689367533, 4315374.232686016708612 ], [ 12724913.157620860263705, 4315374.657532654702663 ] ] ] ] } }
+]
+}

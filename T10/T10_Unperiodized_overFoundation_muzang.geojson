@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T10_Unperiodized_overFoundation_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M454", "Period": null, "Type": "M", "Note": "overF50", "RelaFeat": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724953.393023941665888, 4315285.401916083879769 ], [ 12724952.848089700564742, 4315282.67724487837404 ], [ 12724953.629951873794198, 4315282.535088120028377 ], [ 12724954.245964493602514, 4315285.259759325534105 ], [ 12724953.393023941665888, 4315285.401916083879769 ] ] ] ] } }
+]
+}

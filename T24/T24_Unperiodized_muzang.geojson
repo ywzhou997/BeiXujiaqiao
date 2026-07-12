@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T24_Unperiodized_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "Note": "looted", "RelaFeat": null, "Type": "M", "FeatName": "M575", "Period": null, "RepInt": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724895.413395633921027, 4315287.233649314381182 ], [ 12724897.325881710276008, 4315286.891578634269536 ], [ 12724896.89051902666688, 4315285.538844581693411 ], [ 12724894.869192279875278, 4315285.896463928744197 ], [ 12724895.413395633921027, 4315287.233649314381182 ] ] ] ] } }
+]
+}

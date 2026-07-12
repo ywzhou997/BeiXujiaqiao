@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIX_PeriodIVEarly-IVLate_dongwutaiji",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "dongwutaiji", "type": "F", "note": null, "RelaFeat": "dongwutaiji", "period": "IVEarly-IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724877.266166549175978, 4315341.595719901844859 ], [ 12724884.734164888039231, 4315341.279279294423759 ], [ 12724884.1962158549577, 4315326.786299468018115 ], [ 12724876.380132848396897, 4315327.197672257199883 ], [ 12724877.266166549175978, 4315341.595719901844859 ] ] ] ] } }
+]
+}

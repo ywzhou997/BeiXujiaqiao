@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundVIII_Interpretation_Xueyan",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "mendao", "Type": "mendao", "Period": null, "Note": null, "RelaFeat": "F36", "ReptInter": "Yes", "OrgInter": "Yes" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724836.779463671147823, 4315349.04683883395046 ], [ 12724836.714964704588056, 4315348.517947304993868 ], [ 12724841.490647682920098, 4315348.18881510104984 ], [ 12724841.529347062110901, 4315348.666107456199825 ], [ 12724836.779463671147823, 4315349.04683883395046 ] ] ] ] } },
+{ "type": "Feature", "properties": { "FeatName": "mendao", "Type": "mendao", "Period": null, "Note": null, "RelaFeat": "F37", "ReptInter": "Yes", "OrgInter": "Yes" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724830.204327940940857, 4315346.216361743398011 ], [ 12724829.43276547268033, 4315341.74612441752106 ], [ 12724830.322851214557886, 4315341.668725657276809 ], [ 12724831.042814511805773, 4315346.113163395784795 ], [ 12724830.204327940940857, 4315346.216361743398011 ] ] ] ] } },
+{ "type": "Feature", "properties": { "FeatName": "mendao", "Type": "mendao", "Period": null, "Note": null, "RelaFeat": "F39", "ReptInter": "Yes", "OrgInter": "Yes" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724849.400427382439375, 4315341.425319467671216 ], [ 12724849.34882820956409, 4315337.632780213840306 ], [ 12724850.161515191197395, 4315337.606980627402663 ], [ 12724850.213114365935326, 4315341.425319467671216 ], [ 12724849.400427382439375, 4315341.425319467671216 ] ] ] ] } }
+]
+}

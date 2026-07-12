@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundVII_PeriodIVEarly_F31dianjimu",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 133, "FeatName": "m6", "type": "m", "period": "IVEarly", "note": null, "RelaFeat": "F31" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724946.898610334843397, 4315396.601543297059834 ], [ 12724947.882770672440529, 4315396.543651512823999 ], [ 12724947.882770672440529, 4315396.074728057719767 ], [ 12724946.881242798641324, 4315396.115252306684852 ], [ 12724946.898610334843397, 4315396.601543297059834 ] ] ] ] } }
+]
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIV_Unperiodized_overCompoundIV_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "Note": "overCompoundIV", "RelaFeat": null, "Type": "M", "FeatName": "M560", "Period": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724872.823044132441282, 4315282.450964312069118 ], [ 12724873.809970613569021, 4315282.411933321505785 ], [ 12724873.7207569219172, 4315280.215046123601496 ], [ 12724872.739406295120716, 4315280.231773691251874 ], [ 12724872.823044132441282, 4315282.450964312069118 ] ] ] ] } }
+]
+}

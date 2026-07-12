@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T16_Unperiodized_overF2_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M234", "Type": "M", "Note": "overF2", "RelaFeat": null, "Period": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724887.790644897148013, 4315346.052455628290772 ], [ 12724888.946202116087079, 4315345.950868210755289 ], [ 12724888.711281141266227, 4315343.461976572871208 ], [ 12724887.568422354757786, 4315343.563563982956111 ], [ 12724887.790644897148013, 4315346.052455628290772 ] ] ] ] } }
+]
+}

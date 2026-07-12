@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T23_PeriodIII_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "Note": "muzang,underF40", "RelaFeat": null, "Type": "M", "FeatName": "M427", "Period": "III" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12725062.516826504841447, 4315307.389615089632571 ], [ 12725063.412572929635644, 4315307.203001250512898 ], [ 12725062.852731414139271, 4315305.224894562736154 ], [ 12725061.919662222266197, 4315305.374185632914305 ], [ 12725062.516826504841447, 4315307.389615089632571 ] ] ] ] } }
+]
+}

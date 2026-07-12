@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIII_PeriodEarlyWZ_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "FeatName": "M585", "type": "M", "RelaFeat": "overF59", "note": "overF59,Early Western Zhou", "period": "EarlyWZ" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724904.514874033629894, 4315367.914599606767297 ], [ 12724905.919949147850275, 4315367.893229642882943 ], [ 12724905.919949147850275, 4315365.408971361815929 ], [ 12724904.488161578774452, 4315365.43034132476896 ], [ 12724904.514874033629894, 4315367.914599606767297 ] ] ] ] } }
+]
+}

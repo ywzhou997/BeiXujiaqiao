@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundVI_Unperiodized_muzang_underCompoundI",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M482", "Period": null, "Note": "underCompoundI F25, female elder", "RelaFeat": null, "Type": "M" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724954.655642919242382, 4315333.784059015102684 ], [ 12724957.272638201713562, 4315333.731544059701264 ], [ 12724957.272638201713562, 4315332.33989773876965 ], [ 12724954.625009194016457, 4315332.331145246513188 ], [ 12724954.655642919242382, 4315333.784059015102684 ] ] ] ] } },
+{ "type": "Feature", "properties": { "FeatName": "M483", "Period": null, "Note": "underCompoundI, looted", "RelaFeat": null, "Type": "M" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724959.67082117497921, 4315334.072891271673143 ], [ 12724960.721120284870267, 4315333.980990099720657 ], [ 12724960.480426739901304, 4315331.083915053866804 ], [ 12724959.465137599036098, 4315331.17143998015672 ], [ 12724959.67082117497921, 4315334.072891271673143 ] ] ] ] } },
+{ "type": "Feature", "properties": { "FeatName": "M359", "Period": null, "Note": "underCompoundI, female elder", "RelaFeat": null, "Type": "M" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724960.726996963843703, 4315331.024273068644106 ], [ 12724960.872444635257125, 4315333.84728014562279 ], [ 12724962.128583615645766, 4315333.807612598873675 ], [ 12724961.976524686440825, 4315330.938326717354357 ], [ 12724960.726996963843703, 4315331.024273068644106 ] ] ] ] } }
+]
+}

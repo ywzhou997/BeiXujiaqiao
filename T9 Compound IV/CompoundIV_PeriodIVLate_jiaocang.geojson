@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIV_PeriodIVLate_jiaocang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "Note": "jiao; overCompoundIV,overM571", "RelaFeat": null, "Type": "J", "FeatName": "J2", "Period": "IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724879.746577898040414, 4315279.434959063306451 ], [ 12724880.773811474442482, 4315278.69745803438127 ], [ 12724879.957292478531599, 4315277.679004234261811 ], [ 12724878.973957773298025, 4315278.381386165507138 ], [ 12724879.140773482620716, 4315278.618440067395568 ], [ 12724879.746577898040414, 4315279.434959063306451 ] ] ] ] } }
+]
+}

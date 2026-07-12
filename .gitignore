@@ -1,0 +1,21 @@
+# Large files not needed for the web viewer
+*.pdf
+*.tif
+*.tiff
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.qix
+
+# Old source data
+old shp and gpkg files/
+base maps/
+size comparison/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

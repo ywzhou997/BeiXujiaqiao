@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundVII_PeriodIVLate_tugou",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 190, "FeatName": "G2", "type": "tugou", "period": "IVLate", "note": "tugou", "RelaFeat": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724960.297891918569803, 4315396.112601548433304 ], [ 12724960.645242625847459, 4315396.135758262127638 ], [ 12724960.651031805202365, 4315395.53368370141834 ], [ 12724960.770433612167835, 4315391.540597854182124 ], [ 12724960.280283169820905, 4315391.478846617974341 ], [ 12724960.297891918569803, 4315396.112601548433304 ] ] ] ] } }
+]
+}

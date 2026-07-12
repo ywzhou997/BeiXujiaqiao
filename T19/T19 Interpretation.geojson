@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T19 Interpretation",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "doorway", "Type": "mendao", "Note": "A4,A5,both have two chushi", "RelaFeat": "F11", "RepInter": "Yes", "OrgInter": "Yes" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724995.740932438522577, 4315257.102588302455842 ], [ 12724997.787274159491062, 4315256.869233544915915 ], [ 12724997.733423061668873, 4315255.648608658462763 ], [ 12724995.615279877558351, 4315255.846062684431672 ], [ 12724995.740932438522577, 4315257.102588302455842 ] ] ] ] } }
+]
+}

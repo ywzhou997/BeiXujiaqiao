@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "T23_PeriodIVLate_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "Note": "muzang,underF40", "RelaFeat": null, "Type": "M", "FeatName": "M425", "Period": "IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12725077.198452534154058, 4315303.222320725210011 ], [ 12725077.719245102256536, 4315306.038458324968815 ], [ 12725079.088135365396738, 4315305.784736077301204 ], [ 12725078.602939384058118, 4315302.985528499819338 ], [ 12725077.198452534154058, 4315303.222320725210011 ] ] ] ] } },
+{ "type": "Feature", "properties": { "id": null, "Note": "muzang,overF40,looted", "RelaFeat": null, "Type": "M", "FeatName": "M418", "Period": "IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12725066.744023911654949, 4315310.783457295969129 ], [ 12725067.862763505429029, 4315310.47483947686851 ], [ 12725067.206950640305877, 4315308.16020583268255 ], [ 12725066.165365500375628, 4315308.507400879636407 ], [ 12725066.744023911654949, 4315310.783457295969129 ] ] ] ] } }
+]
+}

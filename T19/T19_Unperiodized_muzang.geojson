@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T19_Unperiodized_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M349", "Type": "M", "Note": null, "RelaFeat": null, "Period": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12725006.231840625405312, 4315256.904811126179993 ], [ 12725007.505830297246575, 4315256.632835803553462 ], [ 12725007.047766596078873, 4315254.041912986896932 ], [ 12725005.716518960893154, 4315254.356831782497466 ], [ 12725006.231840625405312, 4315256.904811126179993 ] ] ] ] } }
+]
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T16_PeriodIVLate_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M110", "Type": "M", "Note": "underF3", "RelaFeat": null, "Period": "IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724878.276716373860836, 4315356.735077476128936 ], [ 12724878.89578296802938, 4315356.617160029709339 ], [ 12724878.080187296494842, 4315354.691175070591271 ], [ 12724877.441467791795731, 4315354.976142232306302 ], [ 12724878.276716373860836, 4315356.735077476128936 ] ] ] ] } }
+]
+}

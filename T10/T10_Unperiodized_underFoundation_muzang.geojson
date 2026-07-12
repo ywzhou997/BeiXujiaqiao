@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "T10_Unperiodized_underFoundation_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M453", "Period": null, "Type": "M", "Note": "underF49", "RelaFeat": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724949.160105118528008, 4315280.527299388311803 ], [ 12724947.734708683565259, 4315280.59209013544023 ], [ 12724947.756305599585176, 4315283.648053701035678 ], [ 12724949.203298948705196, 4315283.583262953907251 ], [ 12724949.160105118528008, 4315280.527299388311803 ] ] ] ] } },
+{ "type": "Feature", "properties": { "FeatName": "M452", "Period": null, "Type": "M", "Note": "underF48", "RelaFeat": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724949.578484259545803, 4315269.693594263866544 ], [ 12724949.531098673120141, 4315266.613531162030995 ], [ 12724950.810509501025081, 4315266.660916748456657 ], [ 12724950.763123914599419, 4315269.646208677440882 ], [ 12724949.578484259545803, 4315269.693594263866544 ] ] ] ] } }
+]
+}

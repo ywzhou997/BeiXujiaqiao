@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIII_PeriodIVLate_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "FeatName": "M259", "type": "M", "RelaFeat": null, "note": "underCompoundIII", "period": "IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724906.673590997233987, 4315375.201387538574636 ], [ 12724907.894385250285268, 4315375.132285977713764 ], [ 12724907.717792371287942, 4315372.460358930751681 ], [ 12724906.496998116374016, 4315372.560172297991812 ], [ 12724906.673590997233987, 4315375.201387538574636 ] ] ] ] } }
+]
+}

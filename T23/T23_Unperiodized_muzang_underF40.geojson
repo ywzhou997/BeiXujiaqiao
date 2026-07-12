@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T23_Unperiodized_muzang_underF40",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "Note": "muzang,underF40", "RelaFeat": null, "Type": "M", "FeatName": "M431", "Period": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12725067.406109074130654, 4315295.931525403633714 ], [ 12725069.12295638769865, 4315295.670266029424965 ], [ 12725068.936342548578978, 4315293.878773179836571 ], [ 12725067.144849698990583, 4315293.878773179836571 ], [ 12725067.406109074130654, 4315295.931525403633714 ] ] ] ] } }
+]
+}

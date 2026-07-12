@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundIX_PeriodIVEarly-IVLate_nanwutaiji",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "nanwutaiji", "type": "F", "note": null, "RelaFeat": "nanwutaiji", "period": "IVEarly-IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724854.121095024049282, 4315328.604262401349843 ], [ 12724883.912733528763056, 4315326.801219590008259 ], [ 12724883.619384193792939, 4315320.507446019910276 ], [ 12724870.758353177458048, 4315321.014375318773091 ], [ 12724853.741366293281317, 4315321.959009642712772 ], [ 12724854.121095024049282, 4315328.604262401349843 ] ] ] ] } }
+]
+}

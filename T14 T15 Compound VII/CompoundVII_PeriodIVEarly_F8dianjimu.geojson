@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundVII_PeriodIVEarly_F8dianjimu",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 16, "FeatName": "m2", "type": "m", "period": "IVEarly", "note": "dianjimu, child burial", "RelaFeat": "F8" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724943.401504516601562, 4315370.786328167654574 ], [ 12724945.165274219587445, 4315370.72071747854352 ], [ 12724945.130539149045944, 4315369.898654136806726 ], [ 12724943.347472183406353, 4315369.960405373945832 ], [ 12724943.401504516601562, 4315370.786328167654574 ] ] ] ] } },
+{ "type": "Feature", "properties": { "fid": 17, "FeatName": "m1", "type": "m", "period": "IVEarly", "note": "dianjimu, child burial", "RelaFeat": "F8" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724956.72823909111321, 4315370.077084596268833 ], [ 12724957.308648880571127, 4315370.060342006385326 ], [ 12724957.22214549779892, 4315369.119966528378427 ], [ 12724956.680801751092076, 4315369.142289982177317 ], [ 12724956.72823909111321, 4315370.077084596268833 ] ] ] ] } }
+]
+}

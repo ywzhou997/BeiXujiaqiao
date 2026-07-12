@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T19_PeriodIVEarly_muzang",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M436", "Type": "M", "Note": "underF11", "RelaFeat": null, "Period": "IVEarly" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724997.406957110390067, 4315263.246130504645407 ], [ 12724998.437600441277027, 4315263.21750152297318 ], [ 12724998.294455533847213, 4315260.411861346103251 ], [ 12724997.306755676865578, 4315260.426175837405026 ], [ 12724997.406957110390067, 4315263.246130504645407 ] ] ] ] } }
+]
+}

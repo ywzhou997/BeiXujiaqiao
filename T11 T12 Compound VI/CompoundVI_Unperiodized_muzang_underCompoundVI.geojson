@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "CompoundVI_Unperiodized_muzang_underCompoundVI",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "M143", "Period": null, "Note": "underCompound VI", "RelaFeat": null, "Type": "M" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724955.914587806910276, 4315299.232334680855274 ], [ 12724956.676204703748226, 4315299.246438696980476 ], [ 12724958.559090923517942, 4315299.182970622554421 ], [ 12724958.523830881342292, 4315297.758464943617582 ], [ 12724958.516778873279691, 4315297.589216744527221 ], [ 12724955.829963706433773, 4315297.568060719408095 ], [ 12724955.914587806910276, 4315299.232334680855274 ] ] ] ] } }
+]
+}

@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "T16_PeriodIVLate_F2_dianjimu",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+"features": [
+{ "type": "Feature", "properties": { "FeatName": "m4", "Type": "m", "Note": "F2dianjimu", "RelaFeat": "F2", "Period": "IVLate" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 12724885.37893445417285, 4315348.429523957893252 ], [ 12724885.708672439679503, 4315348.340219922363758 ], [ 12724885.591890240088105, 4315347.591439915820956 ], [ 12724885.22780454903841, 4315347.653265789151192 ], [ 12724885.37893445417285, 4315348.429523957893252 ] ] ] ] } }
+]
+}

@@ -1,0 +1,2005 @@
+[
+  {
+    "dir": "T10",
+    "compound": null,
+    "trenches": [
+      "T10"
+    ],
+    "files": [
+      {
+        "name": "T10.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T10_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T10_PeriodIII-IVLate_foundation.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIII-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T10_PeriodIII_foundation.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T10_PeriodIII_jisi.geojson",
+        "featureType": "jisi",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T10_PeriodIV_jiao.geojson",
+        "featureType": "jiao",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T10_Unperiodized_overFoundation_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T10_Unperiodized_underFoundation_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T11 T12 Compound VI",
+    "compound": "Compound VI",
+    "trenches": [
+      "T11",
+      "T12"
+    ],
+    "files": [
+      {
+        "name": "CompoundVI.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodEarlyWZ_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIII-IVEarly_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodIII-IVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIII_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIVLate_F12.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIVLate_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIV_F10.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIV_F13.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIV_F55.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIV_F9.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIV_sanshui.geojson",
+        "featureType": "sanshui",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_PeriodIV_zhuji.geojson",
+        "featureType": "zhuji",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_Unperiodized_daogou_recent.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_Unperiodized_jing_pre&postCompoundVI.geojson",
+        "featureType": "jing",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_Unperiodized_muzang_overCompoundVI.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_Unperiodized_muzang_recent.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_Unperiodized_muzang_underCompoundI.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_Unperiodized_muzang_underCompoundVI.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_recent_daogou.geojson",
+        "featureType": "daogou",
+        "period": "recent",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVI_recent_muzang.geojson",
+        "featureType": "muzang",
+        "period": "recent",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T13 Compound I",
+    "compound": "Compound I",
+    "trenches": [
+      "T13"
+    ],
+    "files": [
+      {
+        "name": "CompoundI.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_PeriodIVLate_F23F24F25F26.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_PeriodSongYuan_chezhe.geojson",
+        "featureType": "chezhe",
+        "period": "PeriodSongYuan",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_Unperiodized_daogou.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_Unperiodized_huigou.geojson",
+        "featureType": "huigou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_Unperiodized_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundI_Unperiodized_muzang_underCompoundI.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T14 T15 Compound VII",
+    "compound": "Compound VII",
+    "trenches": [
+      "T14",
+      "T15"
+    ],
+    "files": [
+      {
+        "name": "CompoundVII.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F27.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F28.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F29.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F30.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F31.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F31dianjimu.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F32.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F7.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F8.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_F8dianjimu.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_huangtuaogou.geojson",
+        "featureType": "huangtuaogou",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_lumian.geojson",
+        "featureType": "lumian",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_mutan.geojson",
+        "featureType": "mutan",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_sanshui.geojson",
+        "featureType": "sanshui",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_wengguanzang.geojson",
+        "featureType": "wengguanzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVEarly_zhuchu.geojson",
+        "featureType": "zhuchu",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVLate_paishuigou.geojson",
+        "featureType": "huigou",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_PeriodIVLate_tugou.geojson",
+        "featureType": "gou",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_Unperiodized_daogou.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_Unperiodized_jing_recent.geojson",
+        "featureType": "jing",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_Unperiodized_overCompoundVII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVII_Unperiodized_underCompoundVII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T16",
+    "compound": null,
+    "trenches": [
+      "T16"
+    ],
+    "files": [
+      {
+        "name": "T16.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVEarly-IVLate_F6.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVLate_F1.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVLate_F2.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVLate_F2_dianjimu.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVLate_F3.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVLate_F5.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVLate_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_PeriodShang-ZhouTransition_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodShang-ZhouTransition",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_Unperiodized_overF2_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_Unperiodized_underF2F3F5_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T16_Unperiodized_underF6_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T17 Compound III",
+    "compound": "Compound III",
+    "trenches": [
+      "T17"
+    ],
+    "files": [
+      {
+        "name": "CompoundIII.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly-IVLate_F16.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly-IVLate_F18.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly-IVLate_F59.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly-IVLate_F60.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly-IVLate_xiwutaiji.geojson",
+        "featureType": "xiwutaiji",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly-IVLate_zhudong.geojson",
+        "featureType": "zhudong",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly_F18_dianjimu.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly_hangtuqiang.geojson",
+        "featureType": "hangtuqiang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly_huozao.geojson",
+        "featureType": "huozao",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVEarly_sanshui.geojson",
+        "featureType": "sanshui",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVLate_F15.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVLate_F17.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVLate_F63.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_Unperiodized_overCompoundIII_daogou.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_Unperiodized_overCompoundIII_jing.geojson",
+        "featureType": "jing",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_Unperiodized_overCompoundIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_Unperiodized_overCompoundIII_raokeng.geojson",
+        "featureType": "keng",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_Unperiodized_underCompoundIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIII_Unperiodized_zhudong.geojson",
+        "featureType": "zhudong",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T18",
+    "compound": null,
+    "trenches": [
+      "T18"
+    ],
+    "files": [
+      {
+        "name": "T18 interpretation.geojson",
+        "featureType": "interpretation",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": true
+      },
+      {
+        "name": "T18.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T18_PeriodIVEarly-IVLate_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T18_PeriodIVEarly-IVLate_gou.geojson",
+        "featureType": "gou",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T18_PeriodIVEarly-IVLate_lu.geojson",
+        "featureType": "lu",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T18_PeriodIVEarly_foundation.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T18_PeriodIVEarly_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T18_PeriodSongYuan_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodSongYuan",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T19",
+    "compound": null,
+    "trenches": [
+      "T19"
+    ],
+    "files": [
+      {
+        "name": "T19 Interpretation.geojson",
+        "featureType": "interpretation",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": true
+      },
+      {
+        "name": "T19.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIII-IVLate_F64.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIII-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIVEarly_F11.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIVLate_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIVLate_gou.geojson",
+        "featureType": "gou",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIVLate_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_PeriodIVLate_keng.geojson",
+        "featureType": "keng",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_Unperiodized_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_Unperiodized_underF11_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T19_Unperiodized_underF64_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T2",
+    "compound": null,
+    "trenches": [
+      "T2"
+    ],
+    "files": [
+      {
+        "name": "T2.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T2_PeriodIVEarly_F19.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T2_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T2_Unperiodized_daogou.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T2_Unperiodized_hangtugoucao.geojson",
+        "featureType": "hangtugoucao",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T20 Compound V",
+    "compound": "Compound V",
+    "trenches": [
+      "T20"
+    ],
+    "files": [
+      {
+        "name": "CompoundV.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVEarly_F14.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVEarly_F56.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVEarly_lu.geojson",
+        "featureType": "lu",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVEarly_nanwutaiji.geojson",
+        "featureType": "nanwutaiji",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVEarly_sanshui.geojson",
+        "featureType": "sanshui",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVEarly_xiwutaiji.geojson",
+        "featureType": "xiwutaiji",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_PeriodIVLate_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundV_Unperiodized_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T21T22",
+    "compound": null,
+    "trenches": [
+      "T21",
+      "T22"
+    ],
+    "files": [
+      {
+        "name": "T21T22.geojson",
+        "featureType": "other",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T21T22_PeriodIVEarly_F41F42.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T21T22_PeriodIVEarly_H18.geojson",
+        "featureType": "other",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T21T22_PeriodIVEarly_J2.geojson",
+        "featureType": "other",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T21T22_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T21T22_Unperiodized_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T23",
+    "compound": null,
+    "trenches": [
+      "T23"
+    ],
+    "files": [
+      {
+        "name": "T23.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodII-III_F51.geojson",
+        "featureType": "foundation",
+        "period": "PeriodII-III",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodII-III_jing.geojson",
+        "featureType": "jing",
+        "period": "PeriodII-III",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodIII_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodIVEarly_F40.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodIVEarly_muzang_overF40.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodIVEarly_muzang_underF40.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodIVLate_huikeng.geojson",
+        "featureType": "huikeng",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodShang_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodShang",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_PeriodSuiTang_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodSuiTang",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_Unperiodized_muzang_overF40.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T23_Unperiodized_muzang_underF40.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T24",
+    "compound": null,
+    "trenches": [
+      "T24"
+    ],
+    "files": [
+      {
+        "name": "T24.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_PeriodIVLate_F62.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_PeriodIVLate_F62_jar.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_PeriodIVLate_F62_jiao.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_PeriodIVLate_F62_zao.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_Unperiodized_daogou.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_Unperiodized_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_Unperiodized_overF62_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T24_Unperiodized_underF62_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T3",
+    "compound": null,
+    "trenches": [
+      "T3"
+    ],
+    "files": [
+      {
+        "name": "T3.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T3_PeriodIV_F20F21.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIV",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T4 Compound II",
+    "compound": "Compound II",
+    "trenches": [
+      "T4"
+    ],
+    "files": [
+      {
+        "name": "CompoundII.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly-IVLate_F43.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly-IVLate_F46.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly-IVLate_F47.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly-IVLate_F47F54.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly-IVLate_F54.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly-IVLate_F54F43.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly-IVLate_foundation.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly_dianjimu.geojson",
+        "featureType": "other",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_PeriodTangSong_muzang.geojson",
+        "featureType": "muzang",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_Unperiodized_overCompoundII_daogou.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_Unperiodized_overCompoundII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_Unperiodized_underCompoundII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_Unperiodized_zhudong.geojson",
+        "featureType": "zhudong",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundII_interpretation.geojson",
+        "featureType": "interpretation",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": true
+      }
+    ]
+  },
+  {
+    "dir": "T5 Compound IX",
+    "compound": "Compound IX",
+    "trenches": [
+      "T5"
+    ],
+    "files": [
+      {
+        "name": "CompoundIX.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_Interpretation.geojson",
+        "featureType": "interpretation",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": true
+      },
+      {
+        "name": "CompoundIX_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodIVEarly-IVLate_F35.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodIVEarly-IVLate_F38.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodIVEarly-IVLate_dongwutaiji.geojson",
+        "featureType": "dongwutaiji",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodIVEarly-IVLate_nanwutaiji.geojson",
+        "featureType": "nanwutaiji",
+        "period": "PeriodIVEarly-IVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodIVEarly_wengguanzang.geojson",
+        "featureType": "wengguanzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodIVLate_mutan.geojson",
+        "featureType": "mutan",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_PeriodShang_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodShang",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_Unperiodized_daogou.geojson",
+        "featureType": "daogou",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_Unperiodized_muzang_overCompound.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_Unperiodized_muzang_underCompound.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIX_Unperiodized_shaotumian.geojson",
+        "featureType": "shaotumian",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T5 Compound VIII",
+    "compound": "Compound VIII",
+    "trenches": [
+      "T5"
+    ],
+    "files": [
+      {
+        "name": "CompoundVIII.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_Interpretation_Xueyan.geojson",
+        "featureType": "interpretation",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": true
+      },
+      {
+        "name": "CompoundVIII_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodIVEarly-EarlyWZ_F36.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-EarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodIVEarly-EarlyWZ_F37.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-EarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodIVEarly-EarlyWZ_F39.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly-EarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodIVEarly_hongshaotu.geojson",
+        "featureType": "hongshaotu",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodIVEarly_wengguanzang.geojson",
+        "featureType": "wengguanzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodIVLate_mutan.geojson",
+        "featureType": "mutan",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_PeriodShang_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodShang",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_Unperiodized_huikeng_overCompound.geojson",
+        "featureType": "huikeng",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_Unperiodized_lumian_overCompound.geojson",
+        "featureType": "lumian",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_Unperiodized_muzang_overCompound.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundVIII_Unperiodized_muzang_underCompound.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T7",
+    "compound": null,
+    "trenches": [
+      "T7"
+    ],
+    "files": [
+      {
+        "name": "T7.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T7_PeriodIII_F53.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T7_PeriodIII_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIII",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T8",
+    "compound": null,
+    "trenches": [
+      "T8"
+    ],
+    "files": [
+      {
+        "name": "T8.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "T8_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T8_PeriodIVLate_F52.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T8_PeriodShangZhou_daogou.geojson",
+        "featureType": "daogou",
+        "period": "PeriodShangZhou",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "T8_Unperiodized_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  },
+  {
+    "dir": "T9 Compound IV",
+    "compound": "Compound IV",
+    "trenches": [
+      "T9"
+    ],
+    "files": [
+      {
+        "name": "CompoundIV.geojson",
+        "featureType": "base",
+        "period": null,
+        "isBase": true,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_Interpretation.geojson",
+        "featureType": "interpretation",
+        "period": null,
+        "isBase": false,
+        "isInterpretation": true
+      },
+      {
+        "name": "CompoundIV_PeriodEarlyWZ_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodEarlyWZ",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodIVEarly_F44F45F57F58.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodIVEarly_Stairs.geojson",
+        "featureType": "other",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodIVEarly_jisi.geojson",
+        "featureType": "jisi",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodIVEarly_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVEarly",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodIVLate_F61.geojson",
+        "featureType": "foundation",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodIVLate_jiaocang.geojson",
+        "featureType": "jiao",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodIVLate_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodIVLate",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_PeriodSuiTang_muzang.geojson",
+        "featureType": "muzang",
+        "period": "PeriodSuiTang",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_Unperiodized_daodong.geojson",
+        "featureType": "other",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_Unperiodized_muzang_underCompoundI.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_Unperiodized_overCompoundIV_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      },
+      {
+        "name": "CompoundIV_Unperiodized_underCompoundIV_muzang.geojson",
+        "featureType": "muzang",
+        "period": "Unperiodized",
+        "isBase": false,
+        "isInterpretation": false
+      }
+    ]
+  }
+]
