@@ -4,8 +4,8 @@
 
 A single-page HTML application that renders all GeoJSON vector files from the Bei Xujiaqiao archaeological excavation project on an interactive map. The viewer provides **two tabs** representing two ways to organize the same data:
 
-1. **By Compound / Trench** — layers grouped by compound (or by T-number when no compound applies), listed chronologically within each group.
-2. **By Period** — layers grouped by chronological period across all trenches and compounds.
+1. **By Period** — layers grouped by chronological period across all trenches and compounds. **Default tab on load.**
+2. **By Compound / Trench** — layers grouped by compound (or by T-number when no compound applies), listed chronologically within each group.
 
 In both views, layers are colored by **feature type** (e.g., all muzang share one color, all F-number foundations share another), and each layer can be toggled on/off via checkboxes.
 
@@ -113,8 +113,10 @@ Periods are sorted from earliest to latest. This order governs both the layer li
 | 14 | `PeriodShangZhou` | Shang–Zhou |
 | 15 | `PeriodSuiTang` | Sui–Tang |
 | 16 | `PeriodSongYuan` | Song–Yuan |
-| 17 | `Unperiodized` | Unperiodized |
-| 18 | `recent` | Recent |
+| 17 | `recent` | Recent |
+| 18 | `Unperiodized` | Unperiodized |
+
+> **Tab 2 ordering note:** In the By Period tab, **Base Outlines** appear first (top), chronological period groups follow, and **Unperiodized** appears last. The sort order above still governs layer ordering within Tab 1 groups and general chronology.
 
 ### 3.6 Feature Types & Color Coding
 
@@ -171,15 +173,16 @@ Colors are assigned by **feature type**, not by period. All feature names that m
 |---|---|
 | F-MAP-1 | Use **Leaflet.js** (loaded from CDN) as the mapping library. |
 | F-MAP-2 | Transform EPSG:3857 coordinates to EPSG:4326 (lat/lng) for Leaflet display using `proj4js` (CDN). |
-| F-MAP-3 | On load, fit the map bounds to encompass all loaded features. |
+| F-MAP-3 | On load, set the map view to a **fixed default bounding box** in EPSG:3857: upper-left `(12724749.86, 4315428.93)`, lower-right `(12725091.27, 4315219.93)`. **Fit All** still zooms to all currently selected (visible) layers. |
 | F-MAP-4 | Provide a tile basemap (OpenStreetMap) with an option to toggle to a blank/white background for print-friendly views. |
 | F-MAP-5 | The map state (zoom, pan, visible layers) is **shared** between the two tabs. Switching tabs does not reset the map or remove visible layers. |
+| F-MAP-6 | Scroll-wheel and toolbar zoom use **fractional zoom levels** (`zoomSnap: 0`, `zoomDelta: 0.25`). |
 
 ### 4.2 Tab System
 
 | ID | Requirement |
 |---|---|
-| F-TAB-1 | The sidebar has **two tabs** at the top: **"By Compound/Trench"** and **"By Period"**. |
+| F-TAB-1 | The sidebar has **two tabs** at the top: **"By Period"** (default on load) and **"By Compound/Trench"**. |
 | F-TAB-2 | Switching tabs changes only the sidebar organization. The map and all visible layers remain unchanged. |
 | F-TAB-3 | Checkbox states are synchronized: if a layer is toggled on in Tab 1, its checkbox also appears checked in Tab 2, and vice versa. |
 
@@ -203,7 +206,8 @@ Colors are assigned by **feature type**, not by period. All feature names that m
 | F-T2-2 | Each period section lists **all layer files from all trenches and compounds** that belong to that period. |
 | F-T2-3 | Within each period group, layers are sorted by compound/trench (same order as Tab 1), then by feature type alphabetically. |
 | F-T2-4 | Each layer label includes the source trench/compound prefix, e.g., "Compound VI — F10", "T19 — muzang". The color swatch reflects the feature type. |
-| F-T2-5 | Base files are placed in a special group at the bottom labeled **"Base Outlines"** (interpretation layers are omitted per §3.6). |
+| F-T2-5 | Base files are placed in a special group at the **top** labeled **"Base Outlines"** (interpretation layers are omitted per §3.6). Base outline layers are **deselected by default** on page load. |
+| F-T2-7 | The **Unperiodized** period group appears **last** among period groups (after `recent`). |
 | F-T2-6 | Each period group header has a **group checkbox** that toggles all layers in that group on/off. |
 
 ### 4.5 Bulk Toggle Controls
@@ -214,7 +218,8 @@ Users must be able to show/hide layers at three levels. All toggles update the m
 |---|---|
 | F-TOGGLE-1 | **Layer level** — each layer has its own checkbox. |
 | F-TOGGLE-2 | **Group level** — each collapsible group header has a checkbox that turns all layers in that group on or off. |
-| F-TOGGLE-3 | **Global level** — the sidebar has **"Show All Layers"** and **"Hide All Layers"** buttons that affect every layer in the dataset, regardless of tab. |
+| F-TOGGLE-3 | **Global level** — the sidebar has **"Show All Layers"**, **"Hide All Layers"**, and **"Collapse All"** buttons. Show/Hide affect every layer in the dataset, regardless of tab. Collapse All collapses every group in the active sidebar tab. |
+| F-TOGGLE-8 | **Default state on page load** — all sidebar groups start **collapsed**. All layers start **selected (visible)** except **Base outline** layers, which start **deselected**. |
 | F-TOGGLE-4 | Group checkboxes use a **tri-state** model: checked (all children on), unchecked (all children off), indeterminate (some children on). |
 | F-TOGGLE-5 | Toggling a group on checks all child layer checkboxes in that group. Toggling it off unchecks all child layer checkboxes. |
 | F-TOGGLE-6 | Manually changing individual layer checkboxes updates the parent group checkbox state (checked / unchecked / indeterminate). |
@@ -223,9 +228,9 @@ Users must be able to show/hide layers at three levels. All toggles update the m
 **UI placement (sidebar top, above the tabs):**
 
 ```
-[ Show All Layers ]  [ Hide All Layers ]
+[ Show All Layers ]  [ Hide All Layers ]  [ Collapse All ]
 
-Tab: By Compound/Trench | By Period
+Tab: By Period | By Compound/Trench
 
 ▼ [✓] Compound I
     [✓] Period II — muzang
@@ -239,7 +244,7 @@ Tab: By Compound/Trench | By Period
 | F-STYLE-1 | Assign a distinct color to each **feature type** using the palette defined in §3.6. The same colors apply in both tabs. |
 | F-STYLE-2 | Base trench/compound outlines use gray (`#999`) with dashed stroke and no fill. |
 | F-STYLE-3 | Interpretation layers use dark gray (`#333`) with dotted stroke and semi-transparent fill. |
-| F-STYLE-4 | Display a **legend** on the map mapping feature-type colors. The legend is collapsible and **sorted by hex color** (lightest to darkest, or hue order). Types with the same hex color appear as one legend entry. |
+| F-STYLE-4 | Display a **map legend** on the map mapping feature-type colors (collapsible, sorted by hex color; types with the same hex color appear as one entry). This legend is independent of the **export legend** (see §4.12). |
 | F-STYLE-5 | Each feature type polygon is rendered with a semi-transparent fill (opacity ~0.4) and a solid stroke (opacity 1.0, weight 2). |
 | F-STYLE-6 | Omitted feature types (§3.6) do not appear in the legend or sidebar. |
 
@@ -250,7 +255,7 @@ When the user turns on any layer from **Early Western Zhou (`PeriodEarlyWZ`) or 
 | ID | Requirement |
 |---|---|
 | F-ABANDON-1 | A sidebar checkbox: **"Grey out pre–Early WZ layers"** (abandonment mode). |
-| F-ABANDON-2 | When abandonment mode is enabled and at least one visible layer is from `PeriodEarlyWZ` or a later period, all **earlier** visible vector layers (period sort order &lt; `PeriodEarlyWZ`) are rendered in grey (`#bbbbbb` fill, `#999999` stroke, reduced opacity, dashed outline). |
+| F-ABANDON-2 | When abandonment mode is enabled and at least one visible layer is from `PeriodEarlyWZ` or a later period, all **earlier** visible vector layers (period sort order &lt; `PeriodEarlyWZ`) are rendered in grey (`#bbbbbb` fill, `#999999` stroke, reduced opacity). **Stroke style remains solid** — outlines are not dashed. |
 | F-ABANDON-3 | Base outline layers are never greyed out. |
 | F-ABANDON-4 | When abandonment mode is disabled, or no Early WZ+ layers are visible, all layers revert to their normal feature-type colors. |
 | F-ABANDON-5 | Turning on an Early WZ+ layer while abandonment mode is enabled immediately applies grey styling to earlier visible layers. |
@@ -262,8 +267,8 @@ The map includes a sketching toolbar for annotating the excavation plan.
 | ID | Requirement |
 |---|---|
 | F-DRAW-1 | Use **Leaflet.draw** (CDN) for on-map sketching. |
-| F-DRAW-2 | Support drawing **polyline**, **polygon**, **rectangle**, **marker**, and **freehand polyline** (via polyline tool). |
-| F-DRAW-3 | Drawn features are editable and deletable via the draw toolbar. |
+| F-DRAW-2 | Support drawing **polyline** and **polygon** sketches via the map toolbar (see §4.12). |
+| F-DRAW-3 | Drawn features are editable and deletable via **Edit** and **Delete** tools on the map toolbar. |
 | F-DRAW-4 | Sketches persist in the browser session only (no server save in V1). |
 | F-DRAW-5 | A **"Clear sketches"** button removes all drawn features. |
 | F-DRAW-6 | Drawing mode does not interfere with layer checkbox toggling or feature popups when draw mode is off. |
@@ -279,8 +284,49 @@ The map includes a sketching toolbar for annotating the excavation plan.
 
 | ID | Requirement |
 |---|---|
-| F-NAV-1 | A **"Fit All"** button resets the map view to show all loaded features. |
+| F-NAV-1 | A **"Fit All"** button (upper-right map toolbar) zooms the map to fit all **currently selected (visible)** layers. |
 | F-NAV-2 | Clicking a group header name in either tab zooms to that group's spatial extent. |
+
+### 4.11 Map Toolbar (Upper Right)
+
+Three buttons appear in the upper-right corner of the map:
+
+| ID | Requirement |
+|---|---|
+| F-TOOL-UR-1 | **Fit All** — zoom the map to fit all currently selected (visible) layers in one view. |
+| F-TOOL-UR-2 | **Blank Background** — toggle the basemap to a white/blank background for print-friendly views. Toggles back to OpenStreetMap when clicked again. |
+| F-TOOL-UR-3 | **Clear Sketches** — remove all user-drawn sketch features from the map. |
+
+### 4.12 Map Sidebar (Left)
+
+A vertical toolbar on the left side of the map is organized into **three function groups**:
+
+**Group 1 — Zoom**
+
+| ID | Requirement |
+|---|---|
+| F-TOOL-L-1 | **Zoom In** — increase map zoom by one level. |
+| F-TOOL-L-2 | **Zoom Out** — decrease map zoom by one level. |
+
+**Group 2 — Sketch**
+
+| ID | Requirement |
+|---|---|
+| F-TOOL-L-3 | **Draw Line** — activate polyline drawing mode for sketch annotations. |
+| F-TOOL-L-4 | **Draw Polygon** — activate polygon drawing mode for sketch annotations. |
+| F-TOOL-L-5 | **Edit Layer** — edit existing sketch features (vertices, shape). |
+| F-TOOL-L-6 | **Delete Layer** — delete selected sketch features. |
+
+Sketches persist in the browser session only (no server save in V1). Drawing mode does not interfere with layer checkbox toggling or feature popups when draw mode is off.
+
+**Group 3 — Export / Screenshot**
+
+| ID | Requirement |
+|---|---|
+| F-TOOL-L-7 | **Draw Screenshot Area** — user draws a rectangle on the map defining the export region. The rectangle has a **transparent fill** (outline only). |
+| F-TOOL-L-8 | **Place Scale Bar** — place a draggable, **resizable** scale bar anchored to the **screenshot area** (position stored as a fraction of the screenshot rectangle). The bar maintains its relative position when the map is zoomed or panned. Transparent background; tick marks at **0 m and 10 m**. |
+| F-TOOL-L-9 | **Legend** — open a panel to select export legend items (deselected by default). The **export legend** is minimalist, distinct from the map legend, draggable and resizable, anchored to the **screenshot area** like the scale bar, with a transparent background. |
+| F-TOOL-L-10 | **Download** — save an image of the screenshot area including visible map content, the export scale bar, and the export legend (when placed inside the screenshot region). Resize handles are **not** included in the exported image. |
 
 ## 5. Non-Functional Requirements
 
@@ -289,7 +335,7 @@ The map includes a sketching toolbar for annotating the excavation plan.
 | NF-1 | **Single HTML entry point** — all CSS and JS inline (except CDN libraries). No build tools. |
 | NF-2 | **Static hosting** — must work on **GitHub Pages** with no backend. GeoJSON files are loaded via relative `fetch()` calls. |
 | NF-3 | **Local development compatible** — must also work when served via `python3 -m http.server` or similar. |
-| NF-4 | **Lazy loading** — GeoJSON files are fetched only when their checkbox is toggled on (except base files which load on startup). |
+| NF-4 | **Lazy loading** — GeoJSON files are fetched when their checkbox is toggled on. On startup, all selected (non–base-outline) layers are loaded. |
 | NF-5 | **Caching** — once fetched, GeoJSON data is cached in memory so toggling off/on doesn't re-fetch. |
 | NF-6 | **Responsive** — the sidebar should be collapsible on small screens. |
 | NF-7 | **Synchronized state** — checking/unchecking a layer in one tab is immediately reflected in the other tab, including group and global toggle states. |
@@ -358,6 +404,17 @@ Feature type is determined from the filename suffix (the last segment after the 
 
 GeoJSON files use EPSG:3857 (meters). Leaflet expects EPSG:4326 (degrees). On load, each feature's coordinates are reprojected using `proj4("EPSG:3857", "EPSG:4326", [x, y])`.
 
+### 6.4.1 Default Map View
+
+On page load (after layers are loaded), the map view is set to this fixed extent in EPSG:3857:
+
+| Corner | X (easting) | Y (northing) |
+|---|---|---|
+| Upper left | 12724749.86 | 4315428.93 |
+| Lower right | 12725091.27 | 4315219.93 |
+
+Corners are reprojected to WGS84 for Leaflet `fitBounds`. The **Fit All** control still zooms to the union of all selected layer extents.
+
 ### 6.5 Tab 1 Grouping Logic
 
 ```
@@ -389,8 +446,10 @@ Within each group, sort layers by:
   1. Compound/trench order (same as Tab 1 group order)
   2. Then alphabetically by feature type
 
-Special group at the end:
-  "Base Outlines" — contains all base files (interpretation layers omitted)
+Special group at the top:
+  "Base Outlines" — contains all base files (interpretation layers omitted), deselected by default
+
+Period groups sorted chronologically, except Unperiodized appears last (after recent)
 ```
 
 ### 6.7 Bulk Toggle State Model

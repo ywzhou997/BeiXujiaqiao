@@ -52,7 +52,8 @@ button:hover { background: #f0ebe3; }
 .group-header input[type=checkbox] { flex-shrink: 0; }
 .group-title { flex: 1; font-size: 0.82rem; font-weight: 600; }
 .group-title:hover { color: var(--accent); text-decoration: underline; }
-.group-toggle { color: var(--muted); font-size: 0.75rem; width: 14px; }
+.group.open .group-toggle { transform: rotate(0deg); }
+.group:not(.open) .group-toggle { transform: rotate(-90deg); }
 .group-body { display: none; padding: 4px 8px 8px 22px; }
 .group.open .group-body { display: block; }
 .layer-row {
@@ -62,31 +63,116 @@ button:hover { background: #f0ebe3; }
 .swatch { width: 12px; height: 12px; border-radius: 2px; border: 1px solid rgba(0,0,0,.15); flex-shrink: 0; }
 .swatch.dashed { background: transparent !important; border-style: dashed; }
 .swatch.dotted { background: transparent !important; border-style: dotted; }
-#map-wrap { flex: 1; position: relative; }
-#map { width: 100%; height: 100%; }
+#map-wrap { flex: 1; position: relative; background: #ffffff; }
 #map-toolbar {
   position: absolute; top: 10px; right: 10px; z-index: 1000;
-  display: flex; gap: 6px;
+  display: flex; gap: 4px;
+  background: rgba(255,255,255,.95); border: 1px solid var(--border);
+  border-radius: 6px; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.12);
 }
-#sidebar-toggle {
-  position: absolute; top: 10px; left: 10px; z-index: 1000; display: none;
+#map-sidebar-tools {
+  position: absolute; top: 10px; left: 10px; z-index: 1000;
+  display: flex; flex-direction: column; gap: 8px;
 }
+.tool-group {
+  display: flex; flex-direction: column; gap: 2px;
+  background: rgba(255,255,255,.95); border: 1px solid var(--border);
+  border-radius: 6px; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+.tool-group-title { display: none; }
+.icon-btn {
+  position: relative;
+  width: 34px; height: 34px;
+  border: none; background: transparent; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; cursor: pointer; color: var(--text);
+}
+.icon-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon-btn:hover { background: #f0ebe3; }
+.icon-btn.active { background: var(--accent); color: #fff; }
+.icon-btn .tip {
+  position: absolute; left: calc(100% + 8px); top: 50%;
+  transform: translateY(-50%);
+  background: #2c2c2c; color: #fff; padding: 5px 8px; border-radius: 4px;
+  font-size: 0.72rem; white-space: nowrap; pointer-events: none;
+  opacity: 0; visibility: hidden; transition: opacity 0.12s, visibility 0.12s;
+  z-index: 1002; box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+.icon-btn:hover .tip, .icon-btn:focus-visible .tip { opacity: 1; visibility: visible; }
+#map-toolbar .icon-btn .tip {
+  left: 50%; top: calc(100% + 6px); transform: translateX(-50%);
+}
+#map { width: 100%; height: 100%; background: #ffffff; }
+.leaflet-container { background: #ffffff !important; }
+#scale-bar-wrap {
+  position: absolute; z-index: 1000; cursor: move; user-select: none;
+  background: transparent; border: none; border-radius: 0;
+  padding: 6px 8px 4px; box-shadow: none;
+  display: none; transform-origin: bottom left;
+}
+#scale-bar-wrap.visible { display: block; }
+#export-legend-wrap {
+  position: absolute; z-index: 1000; cursor: move; user-select: none;
+  background: transparent; border: none; padding: 4px;
+  display: none; min-width: 120px; transform-origin: top left;
+}
+#export-legend-wrap.visible { display: block; }
+#export-legend-wrap.dragging { opacity: 0.85; }
+.overlay-resize-handle {
+  position: absolute; right: -2px; bottom: -2px;
+  width: 14px; height: 14px; cursor: nwse-resize;
+  border-right: 2px solid #666; border-bottom: 2px solid #666;
+  opacity: 0.55;
+}
+.overlay-resize-handle:hover { opacity: 1; }
+.export-legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.7rem; line-height: 1.3; margin-bottom: 3px; color: #2c2c2c;
+}
+.export-legend-item .swatch { width: 10px; height: 10px; }
+#scale-bar-track {
+  position: relative; height: 8px; border-bottom: 2px solid #333; margin-top: 14px;
+}
+.scale-tick {
+  position: absolute; bottom: 0; width: 1px; height: 6px; background: #333;
+}
+.scale-tick-label {
+  position: absolute; bottom: 10px; transform: translateX(-50%);
+  font-size: 0.65rem; color: #333; white-space: nowrap;
+}
+#legend-config {
+  position: absolute; top: 10px; left: 56px; z-index: 1001;
+  background: rgba(255,255,255,.97); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px; min-width: 200px; max-height: 50vh;
+  overflow-y: auto; box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none;
+}
+#legend-config.open { display: block; }
+#legend-config h3 { margin: 0 0 8px; font-size: 0.82rem; }
+#legend-config label { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; margin-bottom: 4px; }
 #legend {
   position: absolute; bottom: 24px; right: 10px; z-index: 1000;
   background: rgba(255,255,255,.95); border: 1px solid var(--border);
   border-radius: 6px; max-height: 45vh; overflow: hidden; min-width: 180px;
   box-shadow: 0 2px 8px rgba(0,0,0,.12);
 }
-#legend-header {
-  padding: 8px 10px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
-  display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);
+#legend.dragging { opacity: 0.85; }
+#sidebar-toggle {
+  position: absolute; top: 10px; left: 10px; z-index: 1000; display: none;
 }
+#legend-drag-handle { flex: 1; cursor: move; }
+#legend-header {
+  padding: 8px 10px; font-size: 0.8rem; font-weight: 600;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+#legend-chevron { cursor: pointer; padding: 0 2px; flex-shrink: 0; }
 #legend-body { padding: 8px 10px; overflow-y: auto; max-height: 38vh; }
 #legend.collapsed #legend-body { display: none; }
 .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; margin-bottom: 4px; }
 #status { padding: 6px 14px; font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); }
 @media (max-width: 900px) {
   #sidebar-toggle { display: block; }
+  #map-sidebar-tools { top: 48px; }
   #sidebar { position: absolute; left: 0; top: 0; bottom: 0; box-shadow: 2px 0 12px rgba(0,0,0,.15); }
 }
 </style>
@@ -100,33 +186,102 @@ button:hover { background: #f0ebe3; }
         <button id="show-all-global" type="button">Show All Layers</button>
         <button id="hide-all-global" type="button">Hide All Layers</button>
         <button id="collapse-all" type="button">Collapse All</button>
-        <button id="expand-all" type="button">Expand All</button>
       </div>
       <label class="abandonment-row">
         <input id="abandonment-mode" type="checkbox">
         <span>Grey out pre–Early WZ layers when Early WZ+ layers are visible (abandonment)</span>
       </label>
       <div class="tabs">
-        <button class="tab-btn active" data-tab="compound" type="button">By Compound/Trench</button>
-        <button class="tab-btn" data-tab="period" type="button">By Period</button>
+        <button class="tab-btn active" data-tab="period" type="button">By Period</button>
+        <button class="tab-btn" data-tab="compound" type="button">By Compound/Trench</button>
       </div>
     </div>
     <div id="layer-panels">
-      <div id="panel-compound" class="tab-panel active"></div>
-      <div id="panel-period" class="tab-panel"></div>
+      <div id="panel-compound" class="tab-panel"></div>
+      <div id="panel-period" class="tab-panel active"></div>
     </div>
     <div id="status">Loading…</div>
   </aside>
   <div id="map-wrap">
     <button id="sidebar-toggle" type="button">☰ Layers</button>
+    <div id="map-sidebar-tools">
+      <div class="tool-group">
+        <button class="icon-btn" id="tool-zoom-in" type="button" aria-label="Zoom in">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+          <span class="tip">Zoom in</span>
+        </button>
+        <button class="icon-btn" id="tool-zoom-out" type="button" aria-label="Zoom out">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+          <span class="tip">Zoom out</span>
+        </button>
+      </div>
+      <div class="tool-group">
+        <button class="icon-btn" id="tool-draw-line" type="button" aria-label="Draw line">
+          <svg viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="4"/></svg>
+          <span class="tip">Draw line</span>
+        </button>
+        <button class="icon-btn" id="tool-draw-polygon" type="button" aria-label="Draw polygon">
+          <svg viewBox="0 0 24 24"><polygon points="5,19 10,5 19,8 16,19" fill="currentColor" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="tip">Draw polygon</span>
+        </button>
+        <button class="icon-btn" id="tool-edit-sketch" type="button" aria-label="Edit layer">
+          <svg viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16v4z"/><line x1="13" y1="7" x2="17" y2="11"/></svg>
+          <span class="tip">Edit layer</span>
+        </button>
+        <button class="icon-btn" id="tool-delete-sketch" type="button" aria-label="Delete layer">
+          <svg viewBox="0 0 24 24"><polyline points="3,6 5,6 21,6"/><path d="M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+          <span class="tip">Delete layer</span>
+        </button>
+      </div>
+      <div class="tool-group">
+        <button class="icon-btn" id="tool-screenshot-area" type="button" aria-label="Draw screenshot area">
+          <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1" stroke-dasharray="3 2"/></svg>
+          <span class="tip">Draw screenshot area</span>
+        </button>
+        <button class="icon-btn" id="tool-scale-bar" type="button" aria-label="Place scale bar">
+          <svg viewBox="0 0 24 24"><line x1="4" y1="16" x2="20" y2="16"/><line x1="4" y1="13" x2="4" y2="19"/><line x1="10" y1="14" x2="10" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="20" y1="13" x2="20" y2="19"/></svg>
+          <span class="tip">Place scale bar</span>
+        </button>
+        <button class="icon-btn" id="tool-legend-config" type="button" aria-label="Legend">
+          <svg viewBox="0 0 24 24"><rect x="4" y="6" width="6" height="6" fill="currentColor" stroke="none"/><line x1="13" y1="8" x2="20" y2="8"/><rect x="4" y="14" width="6" height="6" fill="currentColor" stroke="none"/><line x1="13" y1="16" x2="20" y2="16"/></svg>
+          <span class="tip">Export legend</span>
+        </button>
+        <button class="icon-btn" id="tool-download" type="button" aria-label="Download">
+          <svg viewBox="0 0 24 24"><path d="M12 4v10"/><polyline points="8,10 12,14 16,10"/><rect x="5" y="18" width="14" height="2" fill="currentColor" stroke="none"/></svg>
+          <span class="tip">Download</span>
+        </button>
+      </div>
+    </div>
+    <div id="legend-config">
+      <h3>Export Legend Items</h3>
+      <div id="legend-config-items"></div>
+      <p style="font-size:0.68rem;color:var(--muted);margin:8px 0 0">Draw a screenshot area first. Select legend types, then drag within the screenshot frame to reposition. Drag the corner handle to resize.</p>
+    </div>
+    <div id="scale-bar-wrap">
+      <div id="scale-bar-track"></div>
+      <div class="overlay-resize-handle" title="Drag to resize scale bar"></div>
+    </div>
+    <div id="export-legend-wrap">
+      <div id="export-legend-body"></div>
+      <div class="overlay-resize-handle" title="Drag to resize legend"></div>
+    </div>
     <div id="map-toolbar">
-      <button id="fit-all" type="button">Fit All</button>
-      <button id="toggle-basemap" type="button">Blank Background</button>
-      <button id="clear-sketches" type="button">Clear Sketches</button>
+      <button class="icon-btn" id="fit-all" type="button" aria-label="Fit all selected layers">
+        <svg viewBox="0 0 24 24"><polyline points="15,3 21,3 21,9"/><polyline points="9,21 3,21 3,15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        <span class="tip">Fit all selected layers</span>
+      </button>
+      <button class="icon-btn" id="toggle-basemap" type="button" aria-label="Blank background" data-tip-blank="Blank background" data-tip-osm="OSM basemap">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1" fill="currentColor" stroke="none" opacity="0.15"/><rect x="4" y="4" width="16" height="16" rx="1"/></svg>
+        <span class="tip" id="toggle-basemap-tip">Blank background</span>
+      </button>
+      <button class="icon-btn" id="clear-sketches" type="button" aria-label="Clear sketches">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg>
+        <span class="tip">Clear sketches</span>
+      </button>
     </div>
     <div id="map"></div>
     <div id="legend">
-      <div id="legend-header"><span>Legend (Feature Type)</span><span id="legend-chevron">▼</span></div>
+      <div id="legend-header"><span id="legend-drag-handle">Legend (Feature Type)</span><span id="legend-chevron">▼</span></div>
       <div id="legend-body"></div>
     </div>
   </div>
@@ -134,6 +289,7 @@ button:hover { background: #f0ebe3; }
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/proj4@2.11.0/dist/proj4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin=""></script>
 <script>
 const FILE_MANIFEST = [{"dir": "T10", "compound": null, "trenches": ["T10"], "files": [{"name": "T10.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T10_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "T10_PeriodIII-IVLate_foundation.geojson", "featureType": "foundation", "period": "PeriodIII-IVLate", "isBase": false, "isInterpretation": false}, {"name": "T10_PeriodIII_foundation.geojson", "featureType": "foundation", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "T10_PeriodIII_jisi.geojson", "featureType": "jisi", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "T10_PeriodIV_jiao.geojson", "featureType": "jiao", "period": "PeriodIV", "isBase": false, "isInterpretation": false}, {"name": "T10_Unperiodized_overFoundation_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T10_Unperiodized_underFoundation_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T11 T12 Compound VI", "compound": "Compound VI", "trenches": ["T11", "T12"], "files": [{"name": "CompoundVI.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundVI_PeriodEarlyWZ_daogou.geojson", "featureType": "daogou", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIII-IVEarly_daogou.geojson", "featureType": "daogou", "period": "PeriodIII-IVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIII_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIVLate_F12.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIVLate_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIV_F10.geojson", "featureType": "foundation", "period": "PeriodIV", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIV_F13.geojson", "featureType": "foundation", "period": "PeriodIV", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIV_F55.geojson", "featureType": "foundation", "period": "PeriodIV", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIV_F9.geojson", "featureType": "foundation", "period": "PeriodIV", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIV_sanshui.geojson", "featureType": "sanshui", "period": "PeriodIV", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_PeriodIV_zhuji.geojson", "featureType": "zhuji", "period": "PeriodIV", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_Unperiodized_daogou_recent.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_Unperiodized_jing_pre&postCompoundVI.geojson", "featureType": "jing", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_Unperiodized_muzang_overCompoundVI.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_Unperiodized_muzang_recent.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_Unperiodized_muzang_underCompoundI.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_Unperiodized_muzang_underCompoundVI.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_recent_daogou.geojson", "featureType": "daogou", "period": "recent", "isBase": false, "isInterpretation": false}, {"name": "CompoundVI_recent_muzang.geojson", "featureType": "muzang", "period": "recent", "isBase": false, "isInterpretation": false}]}, {"dir": "T13 Compound I", "compound": "Compound I", "trenches": ["T13"], "files": [{"name": "CompoundI.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundI_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_PeriodIVLate_F23F24F25F26.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_PeriodSongYuan_chezhe.geojson", "featureType": "chezhe", "period": "PeriodSongYuan", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_Unperiodized_daogou.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_Unperiodized_huigou.geojson", "featureType": "huigou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_Unperiodized_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundI_Unperiodized_muzang_underCompoundI.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T14 T15 Compound VII", "compound": "Compound VII", "trenches": ["T14", "T15"], "files": [{"name": "CompoundVII.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundVII_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F27.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F28.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F29.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F30.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F31.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F31dianjimu.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F32.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F7.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F8.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_F8dianjimu.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_huangtuaogou.geojson", "featureType": "huangtuaogou", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_lumian.geojson", "featureType": "lumian", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_mutan.geojson", "featureType": "mutan", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_sanshui.geojson", "featureType": "sanshui", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_wengguanzang.geojson", "featureType": "wengguanzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVEarly_zhuchu.geojson", "featureType": "zhuchu", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVLate_paishuigou.geojson", "featureType": "huigou", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_PeriodIVLate_tugou.geojson", "featureType": "gou", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_Unperiodized_daogou.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_Unperiodized_jing_recent.geojson", "featureType": "jing", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_Unperiodized_overCompoundVII_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVII_Unperiodized_underCompoundVII_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T16", "compound": null, "trenches": ["T16"], "files": [{"name": "T16.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T16_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVEarly-IVLate_F6.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVLate_F1.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVLate_F2.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVLate_F2_dianjimu.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVLate_F3.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVLate_F5.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVLate_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T16_PeriodShang-ZhouTransition_daogou.geojson", "featureType": "daogou", "period": "PeriodShang-ZhouTransition", "isBase": false, "isInterpretation": false}, {"name": "T16_Unperiodized_overF2_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T16_Unperiodized_underF2F3F5_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T16_Unperiodized_underF6_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T17 Compound III", "compound": "Compound III", "trenches": ["T17"], "files": [{"name": "CompoundIII.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundIII_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly-IVLate_F16.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly-IVLate_F18.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly-IVLate_F59.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly-IVLate_F60.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly-IVLate_xiwutaiji.geojson", "featureType": "xiwutaiji", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly-IVLate_zhudong.geojson", "featureType": "zhudong", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly_F18_dianjimu.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly_hangtuqiang.geojson", "featureType": "hangtuqiang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly_huozao.geojson", "featureType": "huozao", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVEarly_sanshui.geojson", "featureType": "sanshui", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVLate_F15.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVLate_F17.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVLate_F63.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_Unperiodized_overCompoundIII_daogou.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_Unperiodized_overCompoundIII_jing.geojson", "featureType": "jing", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_Unperiodized_overCompoundIII_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_Unperiodized_overCompoundIII_raokeng.geojson", "featureType": "keng", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_Unperiodized_underCompoundIII_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIII_Unperiodized_zhudong.geojson", "featureType": "zhudong", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T18", "compound": null, "trenches": ["T18"], "files": [{"name": "T18 interpretation.geojson", "featureType": "interpretation", "period": null, "isBase": false, "isInterpretation": true}, {"name": "T18.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T18_PeriodIVEarly-IVLate_daogou.geojson", "featureType": "daogou", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "T18_PeriodIVEarly-IVLate_gou.geojson", "featureType": "gou", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "T18_PeriodIVEarly-IVLate_lu.geojson", "featureType": "lu", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "T18_PeriodIVEarly_foundation.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T18_PeriodIVEarly_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T18_PeriodSongYuan_muzang.geojson", "featureType": "muzang", "period": "PeriodSongYuan", "isBase": false, "isInterpretation": false}]}, {"dir": "T19", "compound": null, "trenches": ["T19"], "files": [{"name": "T19 Interpretation.geojson", "featureType": "interpretation", "period": null, "isBase": false, "isInterpretation": true}, {"name": "T19.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T19_PeriodIII-IVLate_F64.geojson", "featureType": "foundation", "period": "PeriodIII-IVLate", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodIVEarly_F11.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodIVLate_daogou.geojson", "featureType": "daogou", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodIVLate_gou.geojson", "featureType": "gou", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodIVLate_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T19_PeriodIVLate_keng.geojson", "featureType": "keng", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T19_Unperiodized_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T19_Unperiodized_underF11_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T19_Unperiodized_underF64_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T2", "compound": null, "trenches": ["T2"], "files": [{"name": "T2.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T2_PeriodIVEarly_F19.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T2_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T2_Unperiodized_daogou.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T2_Unperiodized_hangtugoucao.geojson", "featureType": "hangtugoucao", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T20 Compound V", "compound": "Compound V", "trenches": ["T20"], "files": [{"name": "CompoundV.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundV_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVEarly_F14.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVEarly_F56.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVEarly_lu.geojson", "featureType": "lu", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVEarly_nanwutaiji.geojson", "featureType": "nanwutaiji", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVEarly_sanshui.geojson", "featureType": "sanshui", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVEarly_xiwutaiji.geojson", "featureType": "xiwutaiji", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_PeriodIVLate_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundV_Unperiodized_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T21T22", "compound": null, "trenches": ["T21", "T22"], "files": [{"name": "T21T22.geojson", "featureType": "other", "period": null, "isBase": false, "isInterpretation": false}, {"name": "T21T22_PeriodIVEarly_F41F42.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T21T22_PeriodIVEarly_H18.geojson", "featureType": "other", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T21T22_PeriodIVEarly_J2.geojson", "featureType": "other", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T21T22_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T21T22_Unperiodized_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T23", "compound": null, "trenches": ["T23"], "files": [{"name": "T23.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T23_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodII-III_F51.geojson", "featureType": "foundation", "period": "PeriodII-III", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodII-III_jing.geojson", "featureType": "jing", "period": "PeriodII-III", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodIII_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodIVEarly_F40.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodIVEarly_muzang_overF40.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodIVEarly_muzang_underF40.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodIVLate_huikeng.geojson", "featureType": "huikeng", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodShang_daogou.geojson", "featureType": "daogou", "period": "PeriodShang", "isBase": false, "isInterpretation": false}, {"name": "T23_PeriodSuiTang_muzang.geojson", "featureType": "muzang", "period": "PeriodSuiTang", "isBase": false, "isInterpretation": false}, {"name": "T23_Unperiodized_muzang_overF40.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T23_Unperiodized_muzang_underF40.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T24", "compound": null, "trenches": ["T24"], "files": [{"name": "T24.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T24_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "T24_PeriodIVLate_F62.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T24_PeriodIVLate_F62_jar.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T24_PeriodIVLate_F62_jiao.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T24_PeriodIVLate_F62_zao.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T24_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T24_Unperiodized_daogou.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T24_Unperiodized_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T24_Unperiodized_overF62_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "T24_Unperiodized_underF62_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T3", "compound": null, "trenches": ["T3"], "files": [{"name": "T3.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T3_PeriodIV_F20F21.geojson", "featureType": "foundation", "period": "PeriodIV", "isBase": false, "isInterpretation": false}]}, {"dir": "T4 Compound II", "compound": "Compound II", "trenches": ["T4"], "files": [{"name": "CompoundII.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundII_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly-IVLate_F43.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly-IVLate_F46.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly-IVLate_F47.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly-IVLate_F47F54.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly-IVLate_F54.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly-IVLate_F54F43.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly-IVLate_foundation.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly_dianjimu.geojson", "featureType": "other", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_PeriodTangSong_muzang.geojson", "featureType": "muzang", "period": null, "isBase": false, "isInterpretation": false}, {"name": "CompoundII_Unperiodized_overCompoundII_daogou.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_Unperiodized_overCompoundII_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_Unperiodized_underCompoundII_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_Unperiodized_zhudong.geojson", "featureType": "zhudong", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundII_interpretation.geojson", "featureType": "interpretation", "period": null, "isBase": false, "isInterpretation": true}]}, {"dir": "T5 Compound IX", "compound": "Compound IX", "trenches": ["T5"], "files": [{"name": "CompoundIX.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundIX_Interpretation.geojson", "featureType": "interpretation", "period": null, "isBase": false, "isInterpretation": true}, {"name": "CompoundIX_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodII_muzang.geojson", "featureType": "muzang", "period": "PeriodII", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodIVEarly-IVLate_F35.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodIVEarly-IVLate_F38.geojson", "featureType": "foundation", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodIVEarly-IVLate_dongwutaiji.geojson", "featureType": "dongwutaiji", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodIVEarly-IVLate_nanwutaiji.geojson", "featureType": "nanwutaiji", "period": "PeriodIVEarly-IVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodIVEarly_wengguanzang.geojson", "featureType": "wengguanzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodIVLate_mutan.geojson", "featureType": "mutan", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_PeriodShang_daogou.geojson", "featureType": "daogou", "period": "PeriodShang", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_Unperiodized_daogou.geojson", "featureType": "daogou", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_Unperiodized_muzang_overCompound.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_Unperiodized_muzang_underCompound.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIX_Unperiodized_shaotumian.geojson", "featureType": "shaotumian", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T5 Compound VIII", "compound": "Compound VIII", "trenches": ["T5"], "files": [{"name": "CompoundVIII.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundVIII_Interpretation_Xueyan.geojson", "featureType": "interpretation", "period": null, "isBase": false, "isInterpretation": true}, {"name": "CompoundVIII_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodIVEarly-EarlyWZ_F36.geojson", "featureType": "foundation", "period": "PeriodIVEarly-EarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodIVEarly-EarlyWZ_F37.geojson", "featureType": "foundation", "period": "PeriodIVEarly-EarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodIVEarly-EarlyWZ_F39.geojson", "featureType": "foundation", "period": "PeriodIVEarly-EarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodIVEarly_hongshaotu.geojson", "featureType": "hongshaotu", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodIVEarly_wengguanzang.geojson", "featureType": "wengguanzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodIVLate_mutan.geojson", "featureType": "mutan", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_PeriodShang_daogou.geojson", "featureType": "daogou", "period": "PeriodShang", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_Unperiodized_huikeng_overCompound.geojson", "featureType": "huikeng", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_Unperiodized_lumian_overCompound.geojson", "featureType": "lumian", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_Unperiodized_muzang_overCompound.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundVIII_Unperiodized_muzang_underCompound.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T7", "compound": null, "trenches": ["T7"], "files": [{"name": "T7.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T7_PeriodIII_F53.geojson", "featureType": "foundation", "period": "PeriodIII", "isBase": false, "isInterpretation": false}, {"name": "T7_PeriodIII_muzang.geojson", "featureType": "muzang", "period": "PeriodIII", "isBase": false, "isInterpretation": false}]}, {"dir": "T8", "compound": null, "trenches": ["T8"], "files": [{"name": "T8.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "T8_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "T8_PeriodIVLate_F52.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "T8_PeriodShangZhou_daogou.geojson", "featureType": "daogou", "period": "PeriodShangZhou", "isBase": false, "isInterpretation": false}, {"name": "T8_Unperiodized_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}, {"dir": "T9 Compound IV", "compound": "Compound IV", "trenches": ["T9"], "files": [{"name": "CompoundIV.geojson", "featureType": "base", "period": null, "isBase": true, "isInterpretation": false}, {"name": "CompoundIV_Interpretation.geojson", "featureType": "interpretation", "period": null, "isBase": false, "isInterpretation": true}, {"name": "CompoundIV_PeriodEarlyWZ_muzang.geojson", "featureType": "muzang", "period": "PeriodEarlyWZ", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodIVEarly_F44F45F57F58.geojson", "featureType": "foundation", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodIVEarly_Stairs.geojson", "featureType": "other", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodIVEarly_jisi.geojson", "featureType": "jisi", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodIVEarly_muzang.geojson", "featureType": "muzang", "period": "PeriodIVEarly", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodIVLate_F61.geojson", "featureType": "foundation", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodIVLate_jiaocang.geojson", "featureType": "jiao", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodIVLate_muzang.geojson", "featureType": "muzang", "period": "PeriodIVLate", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_PeriodSuiTang_muzang.geojson", "featureType": "muzang", "period": "PeriodSuiTang", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_Unperiodized_daodong.geojson", "featureType": "other", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_Unperiodized_muzang_underCompoundI.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_Unperiodized_overCompoundIV_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}, {"name": "CompoundIV_Unperiodized_underCompoundIV_muzang.geojson", "featureType": "muzang", "period": "Unperiodized", "isBase": false, "isInterpretation": false}]}];
 
@@ -141,7 +297,7 @@ const PERIOD_ORDER = [
   "PeriodII","PeriodII-III","PeriodIII","PeriodIII-IVEarly","PeriodIII-IVLate",
   "PeriodIV","PeriodIVEarly","PeriodIVEarly-IVLate","PeriodIVLate",
   "PeriodIVEarly-EarlyWZ","PeriodEarlyWZ","PeriodShang","PeriodShang-ZhouTransition",
-  "PeriodShangZhou","PeriodSuiTang","PeriodSongYuan","Unperiodized","recent"
+  "PeriodShangZhou","PeriodSuiTang","PeriodSongYuan","recent","Unperiodized"
 ];
 const PERIOD_LABELS = {
   PeriodII:"Period II", "PeriodII-III":"Period II–III", PeriodIII:"Period III",
@@ -314,7 +470,7 @@ function reprojectGeoJSON(geojson) {
 
 function styleForType(featureType, abandoned) {
   if (abandoned) {
-    return { color: "#999999", weight: 1, dashArray: "4 4", fillColor: "#bbbbbb", fillOpacity: 0.2 };
+    return { color: "#999999", weight: 2, fillColor: "#bbbbbb", fillOpacity: 0.2 };
   }
   const color = TYPE_COLORS[featureType] || "#7f7f7f";
   if (featureType === "base") return { color: "#999999", weight: 2, dashArray: "6 4", fillOpacity: 0 };
@@ -343,20 +499,39 @@ function refreshAbandonmentStyles() {
 
 const ALL_LAYERS = buildLayers();
 const LAYER_BY_ID = Object.fromEntries(ALL_LAYERS.map(l => [l.id, l]));
-const layerState = Object.fromEntries(ALL_LAYERS.map(l => [l.id, l.isBase]));
+const layerState = Object.fromEntries(ALL_LAYERS.map(l => [l.id, !l.isBase]));
 const geoCache = {};
 const leafletLayers = {};
 const loading = new Set();
 let map, osmLayer, blankLayer, activeBasemap = "osm";
 let loadedBounds = null;
 let abandonmentMode = false;
-let drawnItems, drawControl;
+let drawnItems, exportItems, activeDrawHandler = null, editToolbar = null;
+let screenshotLayer = null, scaleBarVisible = false, drawingScreenshotArea = false;
+let scaleBarUserScale = 1, exportLegendUserScale = 1;
+let scaleBarRelPos = null;
+let exportLegendRelPos = null;
+const legendIncluded = new Set();
+const exportLegendIncluded = new Set();
+
+const DEFAULT_VIEW_3857 = {
+  upperLeft: [12724749.86, 4315428.93],
+  lowerRight: [12725091.27, 4315219.93]
+};
+
+function defaultViewBounds() {
+  const [west, north] = DEFAULT_VIEW_3857.upperLeft;
+  const [east, south] = DEFAULT_VIEW_3857.lowerRight;
+  const sw = proj4("EPSG:3857", "EPSG:4326", [west, south]);
+  const ne = proj4("EPSG:3857", "EPSG:4326", [east, north]);
+  return L.latLngBounds([sw[1], sw[0]], [ne[1], ne[0]]);
+}
 
 const mapEl = document.getElementById("map");
 const statusEl = document.getElementById("status");
 const panelCompound = document.getElementById("panel-compound");
 const panelPeriod = document.getElementById("panel-period");
-let activeTab = "compound";
+let activeTab = "period";
 
 function setStatus(msg) { statusEl.textContent = msg; }
 
@@ -367,7 +542,7 @@ function swatchClass(ft) {
 
 function renderGroup(container, groupId, title, layers, tabName) {
   const group = document.createElement("div");
-  group.className = "group open";
+  group.className = "group";
   group.dataset.groupId = groupId;
   group.dataset.tab = tabName;
 
@@ -446,13 +621,14 @@ function buildSidebar() {
     renderGroup(panelCompound, "c:" + groupLabel(entry), groupLabel(entry), layers, "compound");
   }
 
-  for (const period of PERIOD_ORDER) {
+  const special = sortLayersTab2(ALL_LAYERS.filter(l => l.isBase), groupOrder);
+  if (special.length) renderGroup(panelPeriod, "p:special", "Base Outlines", special, "period");
+
+  const periodOrderTab2 = PERIOD_ORDER;
+  for (const period of periodOrderTab2) {
     const layers = sortLayersTab2(ALL_LAYERS.filter(l => l.period === period && !l.isBase && !l.isInterpretation), groupOrder);
     if (layers.length) renderGroup(panelPeriod, "p:" + period, PERIOD_LABELS[period] || period, layers, "period");
   }
-
-  const special = sortLayersTab2(ALL_LAYERS.filter(l => l.isBase), groupOrder);
-  if (special.length) renderGroup(panelPeriod, "p:special", "Base Outlines", special, "period");
 
   syncAllCheckboxUI();
 }
@@ -615,57 +791,565 @@ async function zoomToLayers(ids) {
 }
 
 function buildLegend() {
+  buildMapLegend();
+  buildExportLegendConfig();
+  refreshExportLegendDisplay();
+}
+
+function buildMapLegend() {
   const body = document.getElementById("legend-body");
   const usedTypes = [...new Set(ALL_LAYERS.map(l => l.featureType))];
-  const entries = usedTypes.map(ft => ({
+  const typeEntries = usedTypes.map(ft => ({
     ft,
     color: TYPE_COLORS[ft] || "#7f7f7f",
     label: TYPE_LABELS[ft] || ft
   }));
-  entries.sort((a, b) => colorLuminance(a.color) - colorLuminance(b.color) || a.label.localeCompare(b.label));
+  if (!legendIncluded.size) typeEntries.forEach(e => legendIncluded.add(e.ft));
+
+  const byColor = new Map();
+  for (const { ft, color, label } of typeEntries) {
+    if (!byColor.has(color)) byColor.set(color, { color, types: [], labels: [] });
+    const g = byColor.get(color);
+    g.types.push(ft);
+    g.labels.push(label);
+  }
+
   body.innerHTML = "";
-  for (const { ft, color, label } of entries) {
+  const colorEntries = [...byColor.values()].sort(
+    (a, b) => colorLuminance(a.color) - colorLuminance(b.color) || a.labels[0].localeCompare(b.labels[0])
+  );
+  for (const { color, types, labels } of colorEntries) {
     const item = document.createElement("div");
     item.className = "legend-item";
+    item.dataset.featureTypes = types.join(",");
+    if (!types.some(ft => legendIncluded.has(ft))) item.style.display = "none";
     const sw = document.createElement("span");
-    sw.className = swatchClass(ft);
+    sw.className = swatchClass(types[0]);
     sw.style.background = color;
     const lbl = document.createElement("span");
-    lbl.textContent = label;
+    lbl.textContent = [...new Set(labels)].join(" / ");
     item.appendChild(sw);
     item.appendChild(lbl);
     body.appendChild(item);
   }
 }
 
+function buildExportLegendConfig() {
+  const configItems = document.getElementById("legend-config-items");
+  const usedTypes = [...new Set(ALL_LAYERS.map(l => l.featureType))];
+  const typeEntries = usedTypes.map(ft => ({
+    ft,
+    label: TYPE_LABELS[ft] || ft
+  })).sort((a, b) => a.label.localeCompare(b.label));
+
+  configItems.innerHTML = "";
+  for (const { ft, label } of typeEntries) {
+    const cfgLabel = document.createElement("label");
+    const cfgCb = document.createElement("input");
+    cfgCb.type = "checkbox";
+    cfgCb.checked = exportLegendIncluded.has(ft);
+    cfgCb.dataset.featureType = ft;
+    cfgCb.addEventListener("change", () => {
+      if (cfgCb.checked) exportLegendIncluded.add(ft);
+      else exportLegendIncluded.delete(ft);
+      refreshExportLegendDisplay();
+    });
+    cfgLabel.appendChild(cfgCb);
+    cfgLabel.appendChild(document.createTextNode(label));
+    configItems.appendChild(cfgLabel);
+  }
+}
+
+function refreshExportLegendDisplay() {
+  const wrap = document.getElementById("export-legend-wrap");
+  const body = document.getElementById("export-legend-body");
+  const selected = [...exportLegendIncluded].sort(
+    (a, b) => (TYPE_LABELS[a] || a).localeCompare(TYPE_LABELS[b] || b)
+  );
+
+  document.querySelectorAll("#legend-config-items input[type=checkbox]").forEach(cb => {
+    cb.checked = exportLegendIncluded.has(cb.dataset.featureType);
+  });
+
+  body.innerHTML = "";
+  if (!selected.length) {
+    wrap.classList.remove("visible");
+    return;
+  }
+
+  wrap.classList.add("visible");
+  if (!exportLegendRelPos && screenshotLayer) exportLegendRelPos = { x: 0.06, y: 0.06 };
+
+  for (const ft of selected) {
+    const item = document.createElement("div");
+    item.className = "export-legend-item";
+    const sw = document.createElement("span");
+    sw.className = swatchClass(ft);
+    sw.style.background = TYPE_COLORS[ft] || "#7f7f7f";
+    const lbl = document.createElement("span");
+    lbl.textContent = TYPE_LABELS[ft] || ft;
+    item.appendChild(sw);
+    item.appendChild(lbl);
+    body.appendChild(item);
+  }
+  applyExportLegendDisplayScale();
+  updateExportOverlaysPosition();
+}
+
+function refreshLegendVisibility() {
+  document.querySelectorAll("#legend-body .legend-item").forEach(item => {
+    const types = item.dataset.featureTypes.split(",");
+    item.style.display = types.some(ft => legendIncluded.has(ft)) ? "" : "none";
+  });
+}
+
+function metersPerPixel(lat, zoom) {
+  return 156543.03392 * Math.cos(lat * Math.PI / 180) / Math.pow(2, zoom);
+}
+
+function mapPointToMapWrap(x, y) {
+  const mapEl = document.getElementById("map");
+  const mapWrap = document.getElementById("map-wrap");
+  const mapRect = mapEl.getBoundingClientRect();
+  const wrapRect = mapWrap.getBoundingClientRect();
+  return {
+    x: x + (mapRect.left - wrapRect.left),
+    y: y + (mapRect.top - wrapRect.top)
+  };
+}
+
+function getScreenshotRectInMapWrap() {
+  if (!screenshotLayer || !map) return null;
+  const bounds = screenshotLayer.getBounds();
+  const nw = map.latLngToContainerPoint(bounds.getNorthWest());
+  const se = map.latLngToContainerPoint(bounds.getSouthEast());
+  const left = Math.min(nw.x, se.x);
+  const top = Math.min(nw.y, se.y);
+  const width = Math.abs(se.x - nw.x);
+  const height = Math.abs(se.y - nw.y);
+  if (width < 1 || height < 1) return null;
+  const tl = mapPointToMapWrap(left, top);
+  return { left: tl.x, top: tl.y, width, height };
+}
+
+function screenToRelativePos(el, anchor) {
+  const rect = getScreenshotRectInMapWrap();
+  if (!rect) return null;
+  const wrap = document.getElementById("map-wrap");
+  const er = el.getBoundingClientRect();
+  const wr = wrap.getBoundingClientRect();
+  const left = er.left - wr.left;
+  const top = er.top - wr.top;
+  const ax = left;
+  const ay = anchor === "bottom-left" ? top + el.offsetHeight : top;
+  return {
+    x: (ax - rect.left) / rect.width,
+    y: (ay - rect.top) / rect.height
+  };
+}
+
+function placeOverlayFromRelative(el, relPos, anchor) {
+  const rect = getScreenshotRectInMapWrap();
+  if (!rect || !relPos) return;
+  const ax = rect.left + relPos.x * rect.width;
+  const ay = rect.top + relPos.y * rect.height;
+  if (anchor === "bottom-left") {
+    el.style.left = ax + "px";
+    el.style.top = (ay - el.offsetHeight) + "px";
+  } else {
+    el.style.left = ax + "px";
+    el.style.top = ay + "px";
+  }
+  el.style.bottom = "auto";
+  el.style.right = "auto";
+}
+
+function updateExportOverlaysPosition() {
+  if (!screenshotLayer) return;
+  const scaleBar = document.getElementById("scale-bar-wrap");
+  const exportLegend = document.getElementById("export-legend-wrap");
+  if (scaleBarVisible && scaleBarRelPos) {
+    placeOverlayFromRelative(scaleBar, scaleBarRelPos, "bottom-left");
+  }
+  if (exportLegend.classList.contains("visible") && exportLegendRelPos) {
+    placeOverlayFromRelative(exportLegend, exportLegendRelPos, "top-left");
+  }
+}
+
+function initScreenshotRelativeDefaults() {
+  if (!scaleBarRelPos) scaleBarRelPos = { x: 0.06, y: 0.94 };
+  if (!exportLegendRelPos) exportLegendRelPos = { x: 0.06, y: 0.06 };
+}
+
+function applyScaleBarDisplayScale() {
+  const wrap = document.getElementById("scale-bar-wrap");
+  wrap.style.transform = "scale(" + scaleBarUserScale + ")";
+}
+
+function applyExportLegendDisplayScale() {
+  const wrap = document.getElementById("export-legend-wrap");
+  wrap.style.transform = "scale(" + exportLegendUserScale + ")";
+}
+
+function updateScaleBar() {
+  const wrap = document.getElementById("scale-bar-wrap");
+  const track = document.getElementById("scale-bar-track");
+  if (!scaleBarVisible || !map) return;
+  const mpp = metersPerPixel(map.getCenter().lat, map.getZoom());
+  const totalM = 10;
+  const widthPx = Math.max(30, Math.round(totalM / mpp));
+  track.style.width = widthPx + "px";
+  track.innerHTML = "";
+  for (const m of [0, 10]) {
+    const tick = document.createElement("div");
+    tick.className = "scale-tick";
+    tick.style.left = (m / totalM * 100) + "%";
+    const lbl = document.createElement("div");
+    lbl.className = "scale-tick-label";
+    lbl.style.left = (m / totalM * 100) + "%";
+    lbl.textContent = m + " m";
+    track.appendChild(tick);
+    track.appendChild(lbl);
+  }
+  applyScaleBarDisplayScale();
+}
+
+function disableActiveDraw() {
+  if (activeDrawHandler) {
+    activeDrawHandler.disable();
+    activeDrawHandler = null;
+  }
+  document.querySelectorAll("#map-sidebar-tools .icon-btn.active").forEach(b => b.classList.remove("active"));
+}
+
+function setActiveTool(btnId) {
+  document.querySelectorAll("#map-sidebar-tools .icon-btn").forEach(b => b.classList.remove("active"));
+  const btn = document.getElementById(btnId);
+  if (btn) btn.classList.add("active");
+}
+
 function initDrawing() {
   drawnItems = new L.FeatureGroup();
+  exportItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
-  drawControl = new L.Control.Draw({
-    position: "topleft",
-    edit: { featureGroup: drawnItems },
-    draw: {
-      polygon: true,
-      polyline: { shapeOptions: { color: "#c0392b", weight: 3 } },
-      rectangle: true,
-      marker: true,
-      circle: false,
-      circlemarker: false
+  map.addLayer(exportItems);
+
+  map.on(L.Draw.Event.CREATED, e => {
+    disableActiveDraw();
+    if (e.layerType === "rectangle" && drawingScreenshotArea) {
+      drawingScreenshotArea = false;
+      if (screenshotLayer) exportItems.removeLayer(screenshotLayer);
+      screenshotLayer = e.layer;
+      exportItems.addLayer(e.layer);
+      initScreenshotRelativeDefaults();
+      updateExportOverlaysPosition();
+      setStatus("Screenshot area defined. Use Download to export.");
+      return;
     }
+    drawnItems.addLayer(e.layer);
+    setStatus("Sketch added.");
   });
-  map.addControl(drawControl);
-  map.on(L.Draw.Event.CREATED, e => drawnItems.addLayer(e.layer));
+
+  map.on(L.Draw.Event.DRAWSTOP, () => disableActiveDraw());
+  map.on(L.Draw.Event.EDITSTOP, () => {
+    if (editToolbar) { editToolbar.disable(); editToolbar = null; }
+    disableActiveDraw();
+    setStatus("Sketch updated.");
+  });
+  map.on(L.Draw.Event.DELETESTOP, () => {
+    disableActiveDraw();
+    setStatus("Sketch deleted.");
+  });
+  map.on("zoom move zoomend moveend", () => {
+    updateScaleBar();
+    updateExportOverlaysPosition();
+  });
+}
+
+function startDrawLine() {
+  disableActiveDraw();
+  if (editToolbar) { editToolbar.disable(); editToolbar = null; }
+  activeDrawHandler = new L.Draw.Polyline(map, { shapeOptions: { color: "#c0392b", weight: 3 } });
+  activeDrawHandler.enable();
+  setActiveTool("tool-draw-line");
+}
+
+function startDrawPolygon() {
+  disableActiveDraw();
+  if (editToolbar) { editToolbar.disable(); editToolbar = null; }
+  activeDrawHandler = new L.Draw.Polygon(map, { shapeOptions: { color: "#c0392b", weight: 2, fillOpacity: 0.15 } });
+  activeDrawHandler.enable();
+  setActiveTool("tool-draw-polygon");
+}
+
+function startScreenshotArea() {
+  disableActiveDraw();
+  if (editToolbar) { editToolbar.disable(); editToolbar = null; }
+  drawingScreenshotArea = true;
+  activeDrawHandler = new L.Draw.Rectangle(map, {
+    shapeOptions: { color: "#3388ff", weight: 2, fillOpacity: 0, fill: false, opacity: 1, dashArray: "6 4" }
+  });
+  activeDrawHandler.enable();
+  setActiveTool("tool-screenshot-area");
+}
+
+function startEditSketch() {
+  disableActiveDraw();
+  editToolbar = new L.EditToolbar.Edit(map, { featureGroup: drawnItems });
+  editToolbar.enable();
+  setActiveTool("tool-edit-sketch");
+}
+
+function startDeleteSketch() {
+  disableActiveDraw();
+  if (editToolbar) { editToolbar.disable(); editToolbar = null; }
+  const del = new L.EditToolbar.Delete(map, { featureGroup: drawnItems });
+  del.enable();
+  setActiveTool("tool-delete-sketch");
+}
+
+function toggleScaleBar() {
+  if (!screenshotLayer) {
+    setStatus("Draw a screenshot area first.");
+    return;
+  }
+  scaleBarVisible = !scaleBarVisible;
+  const wrap = document.getElementById("scale-bar-wrap");
+  wrap.classList.toggle("visible", scaleBarVisible);
+  if (scaleBarVisible) {
+    if (!scaleBarRelPos) scaleBarRelPos = { x: 0.06, y: 0.94 };
+    updateScaleBar();
+    updateExportOverlaysPosition();
+  }
+  document.getElementById("tool-scale-bar").classList.toggle("active", scaleBarVisible);
+}
+
+function makeDraggableScreenshotOverlay(el, anchor, setRelPos) {
+  let dragging = false, startX, startY, origLeft, origTop;
+  el.addEventListener("mousedown", e => {
+    if (e.target.closest(".overlay-resize-handle")) return;
+    dragging = true;
+    el.classList.add("dragging");
+    const rect = el.getBoundingClientRect();
+    const parent = el.offsetParent.getBoundingClientRect();
+    startX = e.clientX;
+    startY = e.clientY;
+    origLeft = rect.left - parent.left;
+    origTop = rect.top - parent.top;
+    e.preventDefault();
+    e.stopPropagation();
+  });
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    const left = origLeft + (e.clientX - startX);
+    const top = origTop + (e.clientY - startY);
+    el.style.left = Math.max(0, left) + "px";
+    el.style.top = Math.max(0, top) + "px";
+    el.style.bottom = "auto";
+    el.style.right = "auto";
+  });
+  window.addEventListener("mouseup", () => {
+    if (!dragging) return;
+    dragging = false;
+    el.classList.remove("dragging");
+    const rel = screenToRelativePos(el, anchor);
+    if (rel) setRelPos(rel);
+  });
+}
+
+function makeDraggable(el, handleEl) {
+  const handle = handleEl || el;
+  let dragging = false, startX, startY, origLeft, origTop;
+  handle.addEventListener("mousedown", e => {
+    if (e.target.closest("input") || e.target.closest(".overlay-resize-handle")) return;
+    dragging = true;
+    el.classList.add("dragging");
+    const rect = el.getBoundingClientRect();
+    const parent = el.offsetParent.getBoundingClientRect();
+    startX = e.clientX;
+    startY = e.clientY;
+    origLeft = rect.left - parent.left;
+    origTop = rect.top - parent.top;
+    e.preventDefault();
+    e.stopPropagation();
+  });
+  window.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    const left = origLeft + (e.clientX - startX);
+    const top = origTop + (e.clientY - startY);
+    el.style.left = Math.max(0, left) + "px";
+    el.style.top = Math.max(0, top) + "px";
+    el.style.bottom = "auto";
+    el.style.right = "auto";
+  });
+  window.addEventListener("mouseup", () => {
+    dragging = false;
+    el.classList.remove("dragging");
+  });
+}
+
+function makeResizable(el, getScale, setScale, applyScale) {
+  const handle = el.querySelector(".overlay-resize-handle");
+  if (!handle) return;
+  handle.addEventListener("mousedown", e => {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startScale = getScale();
+    const onMove = ev => {
+      const delta = (ev.clientX - startX + ev.clientY - startY) / 2;
+      setScale(Math.max(0.4, Math.min(3, startScale + delta * 0.008)));
+      applyScale();
+    };
+    const onUp = () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  });
+}
+
+async function downloadScreenshot() {
+  if (!screenshotLayer) {
+    setStatus("Draw a screenshot area first.");
+    return;
+  }
+  setStatus("Generating image…");
+  const bounds = screenshotLayer.getBounds();
+  const nw = map.latLngToContainerPoint(bounds.getNorthWest());
+  const se = map.latLngToContainerPoint(bounds.getSouthEast());
+  const x = Math.min(nw.x, se.x);
+  const y = Math.min(nw.y, se.y);
+  const w = Math.abs(se.x - nw.x);
+  const h = Math.abs(se.y - nw.y);
+  if (w < 10 || h < 10) {
+    setStatus("Screenshot area too small.");
+    return;
+  }
+  const mapWrap = document.getElementById("map-wrap");
+  const mapLegend = document.getElementById("legend");
+  const resizeHandles = [...document.querySelectorAll(".overlay-resize-handle")];
+  exportItems.eachLayer(layer => layer.setStyle({ opacity: 0, fillOpacity: 0, weight: 0 }));
+  mapLegend.style.visibility = "hidden";
+  resizeHandles.forEach(h => { h.style.visibility = "hidden"; });
+  try {
+    const canvas = await html2canvas(mapWrap, {
+      useCORS: true, allowTaint: true, backgroundColor: "#ffffff",
+      x, y, width: w, height: h, scale: 2
+    });
+    const link = document.createElement("a");
+    link.download = "beixujiaqiao-map.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+    setStatus("Image downloaded.");
+  } catch (e) {
+    console.error(e);
+    setStatus("Download failed: " + e.message);
+  } finally {
+    mapLegend.style.visibility = "";
+    resizeHandles.forEach(h => { h.style.visibility = ""; });
+    exportItems.eachLayer(layer => layer.setStyle({
+      color: "#3388ff", weight: 2, fillOpacity: 0, fill: false, opacity: 1, dashArray: "6 4"
+    }));
+  }
+}
+
+async function loadInitialLayers(ids) {
+  const batchSize = 12;
+  for (let i = 0; i < ids.length; i += batchSize) {
+    const batch = ids.slice(i, i + batchSize);
+    await Promise.all(batch.map(id => fetchLayer(id).catch(e => {
+      console.error(id, e);
+      layerState[id] = false;
+    })));
+    batch.forEach(id => { if (layerState[id] && geoCache[id]) addToMap(id); });
+    setStatus("Loading layers… " + Math.min(i + batchSize, ids.length) + " / " + ids.length);
+  }
+  syncAllCheckboxUI();
+  refreshAbandonmentStyles();
+}
+
+function boundsFromLayerIds(ids) {
+  const bounds = L.latLngBounds([]);
+  for (const id of ids) {
+    if (!geoCache[id]) continue;
+    const lg = leafletLayers[id];
+    if (lg) {
+      const b = lg.getBounds();
+      if (b.isValid()) bounds.extend(b);
+    } else {
+      const tmp = L.geoJSON(geoCache[id]);
+      const b = tmp.getBounds();
+      if (b.isValid()) bounds.extend(b);
+    }
+  }
+  return bounds;
+}
+
+async function fitSelectedLayers() {
+  const ids = ALL_LAYERS.filter(l => layerState[l.id]).map(l => l.id);
+  if (!ids.length) {
+    setStatus("No layers selected.");
+    return;
+  }
+  await zoomToLayers(ids);
+}
+
+function createBlankLayer() {
+  const layer = L.gridLayer({
+    minZoom: 0,
+    maxZoom: 22,
+    tileSize: 256,
+    updateWhenZooming: true,
+    updateWhenIdle: true,
+    keepBuffer: 4,
+    attribution: ""
+  });
+  layer.createTile = function () {
+    const tile = document.createElement("div");
+    tile.style.width = "256px";
+    tile.style.height = "256px";
+    tile.style.background = "#ffffff";
+    tile.style.pointerEvents = "none";
+    return tile;
+  };
+  return layer;
+}
+
+function setBasemap(mode) {
+  const tip = document.getElementById("toggle-basemap-tip");
+  const btn = document.getElementById("toggle-basemap");
+  if (mode === "blank") {
+    if (map.hasLayer(osmLayer)) map.removeLayer(osmLayer);
+    if (!map.hasLayer(blankLayer)) blankLayer.addTo(map);
+    blankLayer.bringToBack();
+    activeBasemap = "blank";
+    if (tip) tip.textContent = btn.dataset.tipOsm || "OSM basemap";
+    btn.classList.add("active");
+  } else {
+    if (map.hasLayer(blankLayer)) map.removeLayer(blankLayer);
+    if (!map.hasLayer(osmLayer)) osmLayer.addTo(map);
+    osmLayer.bringToBack();
+    activeBasemap = "osm";
+    if (tip) tip.textContent = btn.dataset.tipBlank || "Blank background";
+    btn.classList.remove("active");
+  }
 }
 
 function initMap() {
-  map = L.map("map", { preferCanvas: true }).setView([34.8, 114.3], 16);
+  map = L.map("map", {
+    preferCanvas: true,
+    zoomControl: false,
+    zoomSnap: 0,
+    zoomDelta: 0.25,
+    wheelPxPerZoomLevel: 60
+  }).setView([34.8, 114.3], 16);
   osmLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 22, attribution: "&copy; OpenStreetMap"
+    minZoom: 0, maxZoom: 22, attribution: "&copy; OpenStreetMap"
   }).addTo(map);
-  blankLayer = L.tileLayer("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==", {
-    tileSize: 256, opacity: 1
-  });
-  document.getElementById("map-wrap").style.background = "#fff";
+  blankLayer = createBlankLayer();
 }
 
 async function init() {
@@ -674,9 +1358,36 @@ async function init() {
   buildSidebar();
   buildLegend();
 
-  const baseIds = ALL_LAYERS.filter(l => l.isBase).map(l => l.id);
-  await setLayersVisible(baseIds, true);
-  if (loadedBounds && loadedBounds.isValid()) map.fitBounds(loadedBounds.pad(0.05));
+  const selectedIds = ALL_LAYERS.filter(l => layerState[l.id]).map(l => l.id);
+  await loadInitialLayers(selectedIds);
+  map.invalidateSize();
+  map.fitBounds(defaultViewBounds());
+  const on = Object.values(layerState).filter(Boolean).length;
+  setStatus(on + " layer(s) visible");
+
+  makeDraggable(document.getElementById("legend"), document.getElementById("legend-drag-handle"));
+  makeDraggableScreenshotOverlay(
+    document.getElementById("scale-bar-wrap"),
+    "bottom-left",
+    rel => { scaleBarRelPos = rel; }
+  );
+  makeDraggableScreenshotOverlay(
+    document.getElementById("export-legend-wrap"),
+    "top-left",
+    rel => { exportLegendRelPos = rel; }
+  );
+  makeResizable(
+    document.getElementById("scale-bar-wrap"),
+    () => scaleBarUserScale,
+    v => { scaleBarUserScale = v; },
+    applyScaleBarDisplayScale
+  );
+  makeResizable(
+    document.getElementById("export-legend-wrap"),
+    () => exportLegendUserScale,
+    v => { exportLegendUserScale = v; },
+    applyExportLegendDisplayScale
+  );
 
   document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -691,30 +1402,42 @@ async function init() {
   document.getElementById("show-all-global").addEventListener("click", () => setLayersVisible(ALL_LAYERS.map(l => l.id), true));
   document.getElementById("hide-all-global").addEventListener("click", () => setLayersVisible(ALL_LAYERS.map(l => l.id), false));
   document.getElementById("collapse-all").addEventListener("click", () => {
-    document.querySelectorAll(".group").forEach(g => g.classList.remove("open"));
+    const panel = activeTab === "compound" ? panelCompound : panelPeriod;
+    panel.querySelectorAll(".group").forEach(g => g.classList.remove("open"));
   });
   document.getElementById("abandonment-mode").addEventListener("change", e => {
     abandonmentMode = e.target.checked;
     refreshAbandonmentStyles();
   });
-  document.getElementById("clear-sketches").addEventListener("click", () => drawnItems.clearLayers());
-  document.getElementById("fit-all").addEventListener("click", () => {
-    if (loadedBounds && loadedBounds.isValid()) map.fitBounds(loadedBounds.pad(0.05));
+  document.getElementById("clear-sketches").addEventListener("click", () => {
+    drawnItems.clearLayers();
+    disableActiveDraw();
+    if (editToolbar) { editToolbar.disable(); editToolbar = null; }
+    setStatus("Sketches cleared.");
   });
-  document.getElementById("toggle-basemap").addEventListener("click", function() {
-    if (activeBasemap === "osm") {
-      map.removeLayer(osmLayer);
-      blankLayer.addTo(map);
-      activeBasemap = "blank";
-      this.textContent = "OSM Basemap";
-    } else {
-      map.removeLayer(blankLayer);
-      osmLayer.addTo(map);
-      activeBasemap = "osm";
-      this.textContent = "Blank Background";
+  document.getElementById("fit-all").addEventListener("click", () => fitSelectedLayers());
+  document.getElementById("tool-zoom-in").addEventListener("click", () => map.zoomIn());
+  document.getElementById("tool-zoom-out").addEventListener("click", () => map.zoomOut());
+  document.getElementById("tool-draw-line").addEventListener("click", () => startDrawLine());
+  document.getElementById("tool-draw-polygon").addEventListener("click", () => startDrawPolygon());
+  document.getElementById("tool-edit-sketch").addEventListener("click", () => startEditSketch());
+  document.getElementById("tool-delete-sketch").addEventListener("click", () => startDeleteSketch());
+  document.getElementById("tool-screenshot-area").addEventListener("click", () => startScreenshotArea());
+  document.getElementById("tool-scale-bar").addEventListener("click", () => toggleScaleBar());
+  document.getElementById("tool-legend-config").addEventListener("click", () => {
+    if (!screenshotLayer) {
+      setStatus("Draw a screenshot area first.");
+      return;
     }
+    document.getElementById("legend-config").classList.toggle("open");
+    document.getElementById("tool-legend-config").classList.toggle("active",
+      document.getElementById("legend-config").classList.contains("open"));
   });
-  document.getElementById("legend-header").addEventListener("click", () => {
+  document.getElementById("tool-download").addEventListener("click", () => downloadScreenshot());
+  document.getElementById("toggle-basemap").addEventListener("click", function() {
+    setBasemap(activeBasemap === "osm" ? "blank" : "osm");
+  });
+  document.getElementById("legend-chevron").addEventListener("click", () => {
     document.getElementById("legend").classList.toggle("collapsed");
     document.getElementById("legend-chevron").textContent =
       document.getElementById("legend").classList.contains("collapsed") ? "▶" : "▼";
